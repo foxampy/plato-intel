@@ -25,24 +25,23 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
-          cache-dependency-path: main/package-lock.json
 
-      - name: Install dependencies
-        run: cd main && npm ci
+      - name: Install dependencies (main)
+        run: |
+          cd main
+          npm install
 
       - name: Build main site
-        run: cd main && npm run build
-        continue-on-error: true
+        run: |
+          cd main
+          npm run build
 
       - name: Prepare deploy folder
         run: |
           mkdir -p deploy
-          if [ -d "main/dist" ]; then
-            cp -r main/dist/* deploy/
-          fi
-          cp -r v1 deploy/v1 2>/dev/null || true
-          cp -r v2 deploy/v2 2>/dev/null || true
+          cp -r main/dist/* deploy/
+          cp -r v1 deploy/v1
+          cp -r v2 deploy/v2
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
