@@ -1,0 +1,47 @@
+# Telegram Bot
+aiogram>=3.6.0
+
+# AI
+dashscope>=1.14.0
+
+# Database
+asyncpg>=0.29.0
+SQLAlchemy>=2.0.25
+alembic>=1.13.1
+
+# Redis
+redis>=5.0.1
+aioredis>=2.0.1
+
+# Web server
+fastapi>=0.109.0
+uvicorn>=0.27.0
+gunicorn>=21.2.0
+
+# Utils
+python-dotenv>=1.0.0
+pydantic>=2.5.3
+pydantic-settings>=2.1.0
+
+# Logging
+loguru>=0.7.2
+
+# Pagination
+aiogram-dialog>=2.1.0
+
+# Images
+Pillow>=10.2.0
+
+# HTTP client
+aiohttp>=3.9.1
+httpx>=0.26.0
+
+# Tests
+pytest>=7.4.4
+pytest-asyncio>=0.23.3
+pytest-cov>=4.1.0
+
+# Linting
+flake8>=7.0.0
+black>=24.1.0
+isort>=5.13.2

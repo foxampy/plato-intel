@@ -1,0 +1,113 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "created_at": "2026-03-09",
+    "total_categories": 9,
+    "total_products": 95,
+    "currency": "RUB"
+  },
+  "categories": [
+    {
+      "id": "kranovye-tormoza",
+      "name": "Крановые тормоза",
+      "icon": "⚡",
+      "product_count": 11,
+      "price_range": "24 500 — 58 900 ₽"
+    },
+    {
+      "id": "kontaktory",
+      "name": "Контакторы",
+      "icon": "🔌",
+      "product_count": 15,
+      "price_range": "8 900 — 28 600 ₽"
+    },
+    {
+      "id": "avtomaticheskie-vyklyuchateli",
+      "name": "Автоматические выключатели",
+      "icon": "🔋",
+      "product_count": 13,
+      "price_range": "3 200 — 38 500 ₽"
+    },
+    {
+      "id": "elektromagnity",
+      "name": "Электромагниты",
+      "icon": "🧲",
+      "product_count": 16,
+      "price_range": "12 800 — 48 500 ₽"
+    },
+    {
+      "id": "koncevye-vyklyuchateli",
+      "name": "Концевые выключатели",
+      "icon": "🔘",
+      "product_count": 9,
+      "price_range": "780 — 2 450 ₽"
+    },
+    {
+      "id": "puskateli",
+      "name": "Пускатели",
+      "icon": "⚙️",
+      "product_count": 5,
+      "price_range": "4 200 — 12 800 ₽"
+    },
+    {
+      "id": "rele",
+      "name": "Реле",
+      "icon": "📟",
+      "product_count": 14,
+      "price_range": "680 — 3 850 ₽"
+    },
+    {
+      "id": "kommandokontrolery",
+      "name": "Командоконтроллеры",
+      "icon": "🎮",
+      "product_count": 9,
+      "price_range": "8 500 — 18 600 ₽"
+    },
+    {
+      "id": "gidrotolkateli",
+      "name": "Гидротолкатели",
+      "icon": "💧",
+      "product_count": 3,
+      "price_range": "18 500 — 32 400 ₽"
+    }
+  ],
+  "cross_sell_map": {
+    "tkg-200": ["te-30", "kolodka-tkg", "tkg-300"],
+    "tkg-300": ["te-50", "kolodka-tkg", "tkg-400"],
+    "kt-6012": ["rtt-100a", "va57-35-63a"],
+    "kt-6013": ["rtt-100a", "va57-35-100a"],
+    "va57-35-63a": ["pml-1100", "rtl-1014"],
+    "va57-35-100a": ["pml-2100", "rtt-100a"],
+    "emis-1100": ["tkt-100", "tkp-100"],
+    "pml-1100": ["rtl-1014", "va57-35-25a"],
+    "pml-2100": ["rtt-100a", "va57-35-40a"]
+  },
+  "up_sell_map": {
+    "tkg-160": "tkg-200",
+    "tkg-200": "tkg-300",
+    "tkt-100": "tkt-200",
+    "kt-6012": "kt-6013",
+    "va57-35-25a": "va57-35-40a",
+    "va57-35-63a": "va57-39-250a",
+    "pml-1100": "pml-2100",
+    "pml-2100": "pml-3100"
+  },
+  "faq_keywords": {
+    "доставк": "delivery",
+    "оплат": "payment",
+    "гаранти": "warranty",
+    "скидк": "discount",
+    "возврат": "return",
+    "заказ": "order",
+    "контакт": "contacts",
+    "адрес": "address",
+    "телефон": "phone",
+    "цена": "price",
+    "стоим": "price",
+    "сколько": "price",
+    "как": "howto",
+    "какой": "which",
+    "подобр": "select",
+    "выбрать": "select"
+  }
+}
