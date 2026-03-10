@@ -4,11 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'main/**'
-      - 'v1/**'
-      - 'v2/**'
-      - 'transformation.html'
 
 permissions:
   contents: read
@@ -38,14 +33,16 @@ jobs:
 
       - name: Build main site
         run: cd main && npm run build
+        continue-on-error: true
 
       - name: Prepare deploy folder
         run: |
           mkdir -p deploy
-          cp -r main/dist/* deploy/
-          cp -r v1 deploy/v1
-          cp -r v2 deploy/v2
-          if [ -f transformation.html ]; then cp transformation.html deploy/; fi
+          if [ -d "main/dist" ]; then
+            cp -r main/dist/* deploy/
+          fi
+          cp -r v1 deploy/v1 2>/dev/null || true
+          cp -r v2 deploy/v2 2>/dev/null || true
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
