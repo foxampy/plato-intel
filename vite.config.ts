@@ -14,9 +14,11 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  publicDir: 'public',
   assetsInclude: ['**/*.svg', '**/*.csv'],
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
+    emptyOutDir: true,
   }
 })
