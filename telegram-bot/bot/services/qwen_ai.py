@@ -1,18 +1,58 @@
 """
-ИИ-консультант на базе Qwen API
+ИИ-консультант - УПРОЩЁННАЯ ВЕРСИЯ (только FAQ)
 """
-
-import json
 import logging
-from typing import AsyncGenerator, Dict, List, Optional
-
-from dashscope import Generation
+from typing import Dict, List, Optional
 
 from bot.config import settings
 from bot.services.faq import faq_service
-from bot.services.cross_sell import cross_sell_service
 
 logger = logging.getLogger(__name__)
+
+
+class QwenAI:
+    """Упрощённый ИИ-консультант (работает только с FAQ)"""
+
+    SYSTEM_PROMPT = "ПЛАТО-ИНТЕЛ консультант"
+
+    @classmethod
+    def init(cls):
+        logger.info("✅ FAQ-автоответчик инициализирован")
+
+    @classmethod
+    async def ask(cls, user_id: int, message: str, product_context: Optional[Dict] = None) -> str:
+        """Ответ через FAQ (без Qwen API)"""
+        # Проверяем FAQ
+        answer = faq_service.find_answer(message)
+        if answer:
+            logger.info(f"✅ Найдено в FAQ для: {message[:50]}")
+            return answer
+        
+        # Если не найдено - стандартный ответ
+        return cls._get_fallback_response(message)
+
+    @classmethod
+    def _get_fallback_response(cls, message: str) -> str:
+        """Ответ по умолчанию"""
+        message_lower = message.lower()
+        
+        if any(w in message_lower for w in ["здравств", "привет", "добрый"]):
+            return "Здравствуйте! 👋 Я бот ПЛАТО-ИНТЕЛ. Чем могу помочь?"
+        
+        if any(w in message_lower for w in ["цена", "стоимость", "сколько"]):
+            return "💰 У нас выгодные цены! Позвоните +375 (17) 399-31-23 для расчёта."
+        
+        if any(w in message_lower for w in ["заказ", "купить", "приобрести"]):
+            return "🛒 Для оформления заказа выберите товар в каталоге и добавьте в корзину."
+        
+        # Стандартный ответ
+        return """
+Спасибо за ваш вопрос! 🙏
+
+Для точного ответа выберите быстрый вопрос ниже или позвоните:
+📞 +375 (17) 399-31-23
+
+Или посмотрите каталог товаров!"""
 
 
 class QwenAI:
