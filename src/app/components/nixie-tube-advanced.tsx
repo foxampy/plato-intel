@@ -528,9 +528,70 @@ export function NixieTubeAdvanced({
           animation: roll-flicker 0.15s infinite;
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
           .nixie-advanced-wrapper {
-            gap: 12px;
+            gap: 8px;
+          }
+          
+          .nixie-advanced-container {
+            min-width: 70px !important;
+            height: 70px !important;
+            padding: 10px 12px !important;
+            border-radius: 10px;
+          }
+          
+          .glowing-filament {
+            width: 32px !important;
+            height: 44px !important;
+          }
+          
+          .cathode-digit {
+            width: 32px !important;
+            height: 44px !important;
+          }
+          
+          .nixie-label {
+            font-size: 9px;
+            letter-spacing: 0.06em;
+          }
+          
+          .electrode {
+            width: 2px;
+            height: 6px !important;
+          }
+          
+          .glass-specular {
+            top: 4px;
+            left: 6px;
+            width: 20%;
+            height: 35%;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .nixie-advanced-container {
+            min-width: 55px !important;
+            height: 55px !important;
+            padding: 6px 8px !important;
+            border-radius: 8px;
+          }
+          
+          .glowing-filament {
+            width: 24px !important;
+            height: 34px !important;
+          }
+          
+          .cathode-digit {
+            width: 24px !important;
+            height: 34px !important;
+          }
+          
+          .active-digit-layer {
+            gap: 2px;
+          }
+          
+          .nixie-label {
+            font-size: 8px;
           }
         }
       `}</style>

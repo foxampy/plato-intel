@@ -269,7 +269,7 @@ export function HeroSection() {
           
           .gri-counters {
             grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
+            gap: 4px;
             margin-top: 8px;
           }
           
