@@ -169,15 +169,55 @@ export function Footer() {
           }
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
           .footer-container {
-            grid-template-columns: 1fr;
-            padding: 40px 20px;
-            gap: 32px;
+            grid-template-columns: repeat(2, 1fr);
+            padding: 32px 16px;
+            gap: 24px;
+          }
+          
+          .footer-logo {
+            margin-bottom: 0;
+          }
+          
+          .logo-text {
+            font-size: 18px;
+          }
+          
+          .logo-domain {
+            font-size: 14px;
+          }
+          
+          .footer-description {
+            font-size: 11px;
+          }
+          
+          .footer-heading {
+            font-size: 11px;
+            margin-bottom: 12px;
+          }
+          
+          .footer-links {
+            gap: 8px;
+          }
+          
+          .footer-link {
+            font-size: 12px;
           }
 
           .footer-bottom .footer-container {
-            padding: 20px;
+            padding: 16px;
+          }
+          
+          .footer-copyright {
+            font-size: 10px;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .footer-container {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
           }
         }
       `}</style>

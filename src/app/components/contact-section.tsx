@@ -338,13 +338,77 @@ export function ContactSection() {
           }
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
           .contact-section {
-            padding: 80px 20px;
+            padding: 40px 16px;
+          }
+          
+          .section-title {
+            font-size: 24px;
+            margin-bottom: 32px;
+          }
+          
+          .contact-grid {
+            gap: 24px;
+          }
+          
+          .contact-form {
+            gap: 16px;
+          }
+          
+          .form-field {
+            gap: 6px;
+          }
+          
+          .field-label {
+            font-size: 10px;
+          }
+          
+          .neomorph-input {
+            padding: 10px 14px;
+            font-size: 13px;
+          }
+          
+          .inquiry-option {
+            padding: 10px 12px;
+            font-size: 12px;
+          }
+          
+          .neomorph-input.textarea {
+            min-height: 80px;
+          }
+          
+          .submit-button {
+            padding: 14px;
+            font-size: 13px;
           }
 
           .info-card {
-            padding: 24px;
+            padding: 20px;
+          }
+          
+          .info-title {
+            font-size: 16px;
+            margin-bottom: 20px;
+          }
+          
+          .info-items {
+            gap: 16px;
+          }
+          
+          .info-value {
+            font-size: 14px;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .inquiry-selector {
+            gap: 8px;
+          }
+          
+          .inquiry-option {
+            padding: 8px 10px;
+            font-size: 11px;
           }
         }
       `}</style>

@@ -279,26 +279,76 @@ export function DeliveryPage() {
           box-shadow: 0 6px 16px rgba(255, 154, 77, 0.4);
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
           .delivery-page {
-            padding: 88px 16px 40px;
+            padding: 72px 16px 40px;
+          }
+          
+          .page-title {
+            font-size: 22px;
+          }
+          
+          .page-subtitle {
+            font-size: 13px;
           }
 
           .methods-grid {
             grid-template-columns: 1fr;
+            gap: 10px;
+          }
+          
+          .method-card {
+            padding: 16px;
+          }
+          
+          .method-title {
+            font-size: 13px;
+          }
+          
+          .method-price {
+            font-size: 13px;
+          }
+          
+          .method-desc {
+            font-size: 11px;
           }
 
+          .features-box {
+            padding: 16px;
+          }
+          
+          .features-title {
+            font-size: 12px;
+            margin-bottom: 12px;
+          }
+          
           .features-list {
             grid-template-columns: 1fr;
+            gap: 8px;
+          }
+          
+          .feature-item {
+            font-size: 12px;
           }
 
           .warehouse-card {
             flex-direction: column;
             text-align: center;
+            padding: 20px;
+            gap: 16px;
+          }
+          
+          .warehouse-info h3 {
+            font-size: 13px;
+          }
+          
+          .warehouse-info p {
+            font-size: 12px;
           }
 
           .warehouse-btn {
             width: 100%;
+            padding: 10px;
           }
         }
       `}</style>

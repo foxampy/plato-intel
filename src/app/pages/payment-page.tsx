@@ -283,21 +283,78 @@ export function PaymentPage() {
           box-shadow: 0 6px 16px rgba(255, 154, 77, 0.4);
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
           .payment-page {
-            padding: 88px 16px 40px;
+            padding: 72px 16px 40px;
+          }
+          
+          .page-title {
+            font-size: 22px;
+          }
+          
+          .page-subtitle {
+            font-size: 13px;
+          }
+          
+          .method-row {
+            padding: 14px 16px;
+            gap: 12px;
+          }
+          
+          .method-content h3 {
+            font-size: 13px;
+          }
+          
+          .method-content p {
+            font-size: 11px;
+          }
+
+          .conditions-box {
+            padding: 16px;
+          }
+          
+          .box-title {
+            font-size: 12px;
+            margin-bottom: 16px;
           }
 
           .conditions-grid {
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+          }
+          
+          .condition-label {
+            font-size: 10px;
+          }
+          
+          .condition-value {
+            font-size: 12px;
           }
 
           .info-row {
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
           }
-
-          .method-row {
-            padding: 16px 20px;
+          
+          .info-card {
+            padding: 12px;
+            gap: 8px;
+          }
+          
+          .info-card h4 {
+            font-size: 10px;
+          }
+          
+          .info-card p {
+            font-size: 10px;
+          }
+          
+          .cta-box {
+            padding: 20px;
+          }
+          
+          .cta-box p {
+            font-size: 12px;
           }
         }
       `}</style>

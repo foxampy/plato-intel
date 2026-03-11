@@ -162,12 +162,63 @@ export function AdvantagesSection() {
 
         @media (max-width: 768px) {
           .advantages-section {
-            padding: 80px 20px;
+            padding: 40px 16px;
+          }
+          
+          .section-title {
+            font-size: 24px;
+            margin-bottom: 32px;
           }
 
           .advantages-strip {
-            grid-template-columns: 1fr;
-            gap: 48px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+          }
+          
+          .advantage-module {
+            gap: 12px;
+            padding: 16px;
+            background: var(--surface);
+            border-radius: 12px;
+            box-shadow: 
+              4px 4px 8px var(--shadow-dark),
+              -1px -1px 4px var(--shadow-light);
+          }
+          
+          .gri-wrapper {
+            margin-bottom: 0;
+            transform: scale(0.8);
+          }
+          
+          .icon-wrapper {
+            padding: 16px;
+            margin-bottom: 0;
+          }
+          
+          .icon-wrapper svg {
+            width: 32px;
+            height: 32px;
+          }
+          
+          .advantage-title {
+            font-size: 13px;
+          }
+          
+          .advantage-text {
+            font-size: 11px;
+            line-height: 1.4;
+            max-width: none;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .advantages-strip {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+          }
+          
+          .advantage-module {
+            padding: 12px 8px;
           }
         }
       `}</style>

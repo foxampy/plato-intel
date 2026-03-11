@@ -208,14 +208,76 @@ export function ProductsSection({ onSelectCategory }: ProductsSectionProps) {
           pointer-events: none;
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
           .products-section {
-            padding: 80px 20px;
+            padding: 40px 16px;
+          }
+          
+          .section-header {
+            margin-bottom: 24px;
+          }
+          
+          .section-title {
+            font-size: 24px;
+            margin-bottom: 8px;
+          }
+          
+          .section-description {
+            font-size: 13px;
           }
 
           .products-grid {
-            grid-template-columns: 1fr;
-            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+          }
+          
+          .product-card {
+            padding: 20px 12px;
+          }
+          
+          .product-icon {
+            width: 48px;
+            height: 48px;
+          }
+          
+          .product-icon svg {
+            width: 24px;
+            height: 24px;
+          }
+          
+          .product-title {
+            font-size: 12px;
+          }
+          
+          .info-btn {
+            opacity: 1;
+            width: 24px;
+            height: 24px;
+            top: 8px;
+            right: 8px;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .products-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+          }
+          
+          .product-card {
+            padding: 16px 8px;
+            border-radius: 8px;
+          }
+          
+          .product-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+          }
+          
+          .product-title {
+            font-size: 11px;
           }
         }
       `}</style>

@@ -883,32 +883,228 @@ export function PresentationSection() {
 
         @media (max-width: 768px) {
           .presentation-section {
-            padding: 80px 20px;
+            padding: 40px 16px;
           }
-
+          
           .section-container {
-            gap: 60px;
+            gap: 40px;
+          }
+          
+          .block-title {
+            font-size: 28px;
+            margin-bottom: 24px;
+          }
+          
+          .block-subtitle {
+            font-size: 18px;
+            margin-bottom: 20px;
+          }
+          
+          .intro-text {
+            font-size: 14px;
+            line-height: 1.6;
+          }
+          
+          .design-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+          }
+          
+          .design-card {
+            padding: 16px 12px;
+          }
+          
+          .design-card h4 {
+            font-size: 11px;
+            margin: 8px 0 6px;
+          }
+          
+          .design-card p {
+            font-size: 10px;
+            line-height: 1.3;
+          }
+          
+          .design-icon {
+            width: 48px;
+            height: 48px;
+            font-size: 16px;
           }
 
+          .features-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+          }
+          
+          .feature-card {
+            padding: 16px 12px;
+            border-radius: 10px;
+          }
+          
+          .feature-title {
+            font-size: 12px;
+          }
+          
+          .feature-description {
+            font-size: 11px;
+          }
+          
+          .audience-grid {
+            grid-template-columns: 1fr;
+            gap: 12px;
+          }
+          
+          .audience-card {
+            padding: 20px;
+          }
+          
           .proposal-block {
-            padding: 24px;
+            padding: 20px;
+            border-radius: 16px;
           }
 
           .stages-container {
             grid-template-columns: 1fr;
+            gap: 16px;
+          }
+          
+          .stage-card {
+            padding: 20px;
+          }
+          
+          .stage-header {
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+          }
+          
+          .stage-title {
+            font-size: 14px;
+          }
+          
+          .stage-item {
+            gap: 8px;
+          }
+          
+          .stage-item-name {
+            font-size: 12px;
+          }
+          
+          .stage-item-effect {
+            font-size: 10px;
+          }
+          
+          .benefits-section {
+            margin-top: 20px;
+          }
+          
+          .benefits-title {
+            font-size: 13px;
+            margin-bottom: 16px;
           }
 
           .benefits-grid {
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
           }
-
-          .features-grid,
-          .audience-grid,
-          .forecast-grid {
-            grid-template-columns: 1fr;
+          
+          .benefit-item {
+            padding: 12px;
+            gap: 8px;
+          }
+          
+          .benefit-text {
+            font-size: 10px;
+            line-height: 1.3;
+          }
+          
+          .benefit-icon svg {
+            width: 16px;
+            height: 16px;
           }
 
           .pricing-comparison {
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+          }
+          
+          .pricing-card {
+            padding: 24px 20px;
+          }
+          
+          .pricing-header h3 {
+            font-size: 16px;
+          }
+          
+          .pricing-range {
+            font-size: 20px;
+          }
+          
+          .savings p {
+            font-size: 13px;
+          }
+          
+          .pricing-details {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+          }
+          
+          .detail-card {
+            padding: 20px;
+          }
+          
+          .detail-card h4 {
+            font-size: 12px;
+          }
+          
+          .detail-card p {
+            font-size: 10px;
+          }
+          
+          .cta-block {
+            padding: 32px 20px;
+            border-radius: 16px;
+          }
+          
+          .cta-title {
+            font-size: 24px;
+            margin-bottom: 12px;
+          }
+          
+          .cta-text {
+            font-size: 13px;
+            margin-bottom: 20px;
+          }
+          
+          .cta-button {
+            padding: 14px 32px;
+            font-size: 14px;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .design-grid {
+            grid-template-columns: 1fr;
+            gap: 8px;
+          }
+          
+          .design-card {
+            padding: 12px;
+          }
+          
+          .features-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+          }
+          
+          .feature-card {
+            padding: 12px 8px;
+          }
+          
+          .benefits-grid {
+            grid-template-columns: 1fr;
+          }
+          
+          .pricing-details {
             grid-template-columns: 1fr;
           }
         }

@@ -244,19 +244,92 @@ export function HeroSection() {
           }
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
           .hero-section {
-            padding: 80px 20px;
+            padding: 80px 16px 40px;
+            min-height: auto;
           }
-
+          
+          .hero-container {
+            gap: 24px;
+          }
+          
+          .left-module {
+            gap: 16px;
+          }
+          
+          .hero-headline {
+            font-size: 28px;
+            line-height: 1.1;
+          }
+          
+          .hero-subheadline {
+            font-size: 14px;
+          }
+          
           .gri-counters {
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-top: 8px;
           }
-
+          
+          .cta-buttons {
+            flex-direction: row;
+            gap: 12px;
+            margin-top: 8px;
+          }
+          
+          .cta-buttons button {
+            flex: 1;
+            font-size: 12px;
+            padding: 12px 16px;
+          }
+          
+          .right-module {
+            gap: 16px;
+          }
+          
+          .info-card {
+            padding: 20px;
+          }
+          
+          .card-title {
+            font-size: 16px;
+            margin-bottom: 12px;
+          }
+          
+          .card-text {
+            font-size: 13px;
+            margin-bottom: 16px;
+          }
+          
+          .card-stats {
+            gap: 16px;
+          }
+          
+          .stat-number {
+            font-size: 20px;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .hero-section {
+            padding: 72px 12px 32px;
+          }
+          
+          .hero-headline {
+            font-size: 24px;
+          }
+          
+          .gri-counters {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px;
+          }
+          
           .cta-buttons {
             flex-direction: column;
           }
-
+          
           .cta-buttons button {
             width: 100%;
           }

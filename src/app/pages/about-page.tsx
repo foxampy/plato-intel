@@ -237,19 +237,83 @@ export function AboutPage() {
 
         @media (max-width: 768px) {
           .about-page {
-            padding: 100px 20px 60px;
+            padding: 72px 16px 40px;
+          }
+          
+          .page-header {
+            margin-bottom: 32px;
+          }
+          
+          .page-title {
+            font-size: 24px;
+            margin-bottom: 8px;
+          }
+          
+          .page-subtitle {
+            font-size: 13px;
           }
 
           .stats-grid {
             grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+          }
+          
+          .stat-card {
+            padding: 16px 8px;
+          }
+          
+          .stats-section {
+            margin-bottom: 32px;
           }
 
           .description-section {
-            padding: 24px;
+            padding: 20px;
+            margin-bottom: 32px;
+          }
+          
+          .description-content h2 {
+            font-size: 18px;
+            margin-bottom: 12px;
+          }
+          
+          .description-content p {
+            font-size: 13px;
+            line-height: 1.6;
           }
 
+          .values-section h2 {
+            font-size: 18px;
+            margin-bottom: 24px;
+          }
+          
           .values-grid {
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+          }
+          
+          .value-card {
+            padding: 16px 12px;
+          }
+          
+          .value-icon svg {
+            width: 24px;
+            height: 24px;
+          }
+          
+          .value-card h3 {
+            font-size: 11px;
+            margin-bottom: 4px;
+          }
+          
+          .value-card p {
+            font-size: 10px;
+            line-height: 1.4;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .values-grid {
+            grid-template-columns: repeat(2, 1fr);
           }
         }
       `}</style>

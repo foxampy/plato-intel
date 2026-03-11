@@ -318,30 +318,62 @@ export function Header({ currentPage, onNavigate, onOpenInfo }: HeaderProps) {
           }
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
           .site-header {
-            height: 64px;
+            height: 56px;
+          }
+          
+          .header-container {
+            padding: 0 16px;
+            gap: 8px;
           }
 
           .logo-bulb {
-            width: 40px;
-            height: 56px;
+            width: 32px;
+            height: 44px;
+          }
+          
+          .logo-text-container {
+            gap: 1px;
           }
 
           .logo-text {
-            font-size: 24px;
+            font-size: 20px;
+          }
+          
+          .logo-separator {
+            font-size: 14px;
           }
 
           .logo-subtext {
-            font-size: 18px;
+            font-size: 14px;
+          }
+          
+          .info-button {
+            width: 32px;
+            height: 32px;
+          }
+          
+          .info-button svg {
+            width: 16px;
+            height: 16px;
           }
 
           .phone-link {
             display: none;
           }
 
+          .call-button {
+            padding: 8px 12px;
+          }
+          
           .call-button span {
             display: none;
+          }
+          
+          .call-button svg {
+            width: 16px;
+            height: 16px;
           }
         }
       `}</style>

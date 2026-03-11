@@ -281,9 +281,62 @@ export function ContactsPage() {
           background: rgba(255, 154, 77, 0.1);
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
           .contacts-page {
-            padding: 88px 16px 40px;
+            padding: 72px 16px 40px;
+          }
+          
+          .page-title {
+            font-size: 22px;
+          }
+          
+          .contact-item {
+            padding: 14px 16px;
+            gap: 12px;
+          }
+          
+          .contact-icon svg {
+            width: 18px;
+            height: 18px;
+          }
+          
+          .contact-label {
+            font-size: 9px;
+          }
+          
+          .contact-value {
+            font-size: 13px;
+          }
+          
+          .actions-row {
+            gap: 8px;
+          }
+          
+          .action-btn {
+            padding: 12px;
+            font-size: 12px;
+          }
+          
+          .map-placeholder {
+            height: 120px;
+          }
+          
+          .map-placeholder svg {
+            width: 24px;
+            height: 24px;
+          }
+          
+          .map-placeholder p {
+            font-size: 12px;
+          }
+          
+          .map-placeholder span {
+            font-size: 11px;
+          }
+          
+          .map-link {
+            padding: 12px;
+            font-size: 12px;
           }
         }
       `}</style>

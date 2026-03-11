@@ -192,20 +192,67 @@ export function SolutionsSection() {
           }
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
           .solutions-section {
-            padding: 80px 20px;
+            padding: 40px 16px;
+          }
+          
+          .section-title {
+            font-size: 24px;
+            margin-bottom: 32px;
           }
 
           .solutions-grid {
-            grid-template-columns: 1fr;
-            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+          }
+          
+          .solution-card {
+            padding: 20px 12px;
+            min-height: auto;
+            border-radius: 10px;
+          }
+          
+          .solution-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 8px;
+          }
+          
+          .solution-icon svg {
+            width: 24px;
+            height: 24px;
           }
 
           .solution-card.featured {
-            grid-column: span 1;
+            grid-column: span 2;
             grid-row: span 1;
-            min-height: 200px;
+            min-height: auto;
+            padding: 24px;
+          }
+          
+          .solution-title {
+            font-size: 12px;
+          }
+          
+          .solution-card.featured .solution-title {
+            font-size: 14px;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .solutions-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+          }
+          
+          .solution-card {
+            padding: 16px 8px;
+          }
+          
+          .solution-icon {
+            width: 40px;
+            height: 40px;
           }
         }
       `}</style>

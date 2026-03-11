@@ -385,21 +385,86 @@ export function CatalogPage({ onSelectCategory }: CatalogPageProps) {
 
         @media (max-width: 768px) {
           .catalog-page {
-            padding: 100px 20px 60px;
+            padding: 72px 16px 40px;
+          }
+          
+          .page-title {
+            font-size: 24px;
+          }
+          
+          .page-subtitle {
+            font-size: 13px;
           }
 
           .search-section {
-            flex-direction: column;
+            flex-direction: row;
+            gap: 8px;
+          }
+          
+          .search-bar {
+            padding: 10px 14px;
+          }
+          
+          .search-input {
+            font-size: 13px;
+          }
+          
+          .filter-btn {
+            padding: 10px 14px;
+            font-size: 11px;
           }
 
           .categories-grid {
             grid-template-columns: 1fr;
+            gap: 10px;
+          }
+          
+          .category-card {
+            padding: 16px;
+            gap: 12px;
+          }
+          
+          .category-icon {
+            width: 40px;
+            height: 40px;
+          }
+          
+          .category-icon svg {
+            width: 20px;
+            height: 20px;
+          }
+          
+          .category-title {
+            font-size: 14px;
+          }
+          
+          .category-description {
+            font-size: 11px;
+            margin-bottom: 8px;
+          }
+          
+          .category-count {
+            font-size: 11px;
           }
 
           .info-banner {
             flex-direction: column;
             text-align: center;
-            padding: 24px;
+            padding: 20px;
+            gap: 16px;
+          }
+          
+          .info-content h3 {
+            font-size: 14px;
+          }
+          
+          .info-content p {
+            font-size: 12px;
+          }
+          
+          .info-btn {
+            width: 100%;
+            padding: 12px;
           }
         }
       `}</style>
