@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>PLATO-INTEL</title>
+  <script>
+    // Single Page App routing fix for GitHub Pages
+    const path = window.location.pathname;
+    const repo = '/plato-intel';
+    if (path.startsWith(repo)) {
+      const newPath = path.slice(repo.length) || '/';
+      sessionStorage.setItem('spa-path', newPath);
+      window.location.replace(repo + '/');
+    }
+  </script>
+</head>
+<body>
+  <p>Redirecting...</p>
+</body>
+</html>

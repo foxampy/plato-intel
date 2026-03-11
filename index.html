@@ -15,6 +15,17 @@
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- SPA redirect handler -->
+    <script>
+      (function() {
+        const redirect = sessionStorage.getItem('spa-path');
+        if (redirect) {
+          sessionStorage.removeItem('spa-path');
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
   </head>
 
   <body>
