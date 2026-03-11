@@ -294,3 +294,58 @@ def get_back_keyboard() -> InlineKeyboardMarkup:
             ],
         ]
     )
+
+
+def get_product_keyboard(product_id: str, quick_questions: list = None) -> InlineKeyboardMarkup:
+    """Клавиатура для карточки товара"""
+    keyboard = [
+        [
+            InlineKeyboardButton(
+                text="🛒 В корзину",
+                callback_data=f"add_to_cart:{product_id}",
+            ),
+            InlineKeyboardButton(
+                text="❤️ В избранное",
+                callback_data=f"favorite:{product_id}",
+            ),
+        ],
+    ]
+
+    # Добавляем быстрые вопросы, если есть
+    if quick_questions:
+        for qq in quick_questions[:3]:  # До 3 вопросов
+            keyboard.append([
+                InlineKeyboardButton(
+                    text=qq["label"],
+                    callback_data=f"ai_quick:{qq['question']}",
+                ),
+            ])
+
+    keyboard.append([
+        InlineKeyboardButton(
+            text="🔙 Назад в каталог",
+            callback_data="catalog_back",
+        ),
+    ])
+
+    return InlineKeyboardMarkup(keyboard=keyboard)
+
+
+def get_cross_sell_keyboard(product_id: str) -> InlineKeyboardMarkup:
+    """Клавиатура для сопутствующего товара"""
+    return InlineKeyboardMarkup(
+        keyboard=[
+            [
+                InlineKeyboardButton(
+                    text="🛒 Добавить в корзину",
+                    callback_data=f"add_to_cart:{product_id}",
+                ),
+            ],
+            [
+                InlineKeyboardButton(
+                    text="🔙 Вернуться к основному товару",
+                    callback_data=f"product:{product_id}",
+                ),
+            ],
+        ]
+    )

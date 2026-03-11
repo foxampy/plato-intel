@@ -9,6 +9,8 @@ from typing import AsyncGenerator, Dict, List, Optional
 from dashscope import Generation
 
 from bot.config import settings
+from bot.services.faq import faq_service
+from bot.services.cross_sell import cross_sell_service
 
 logger = logging.getLogger(__name__)
 
@@ -147,15 +149,21 @@ class QwenAI:
     ) -> str:
         """
         Задать вопрос ИИ-консультанту
-        
+
         Args:
             user_id: ID пользователя в Telegram
             message: Сообщение пользователя
             product_context: Контекст товара (если есть)
-        
+
         Returns:
             Ответ от ИИ
         """
+        # Сначала проверяем FAQ (быстрый ответ без API)
+        faq_match = faq_service.find_answer(message)
+        if faq_match:
+            logger.info(f"✅ Найдено совпадение в FAQ: {faq_match['id']}")
+            return faq_match["answer"]
+
         # Формируем промпт с контекстом товара
         if product_context:
             product_info = f"""
@@ -167,17 +175,17 @@ class QwenAI:
 
 """
             message = product_info + message
-        
+
         # Добавляем в контекст
         cls._add_to_context(user_id, "user", message)
-        
+
         try:
             # Формируем messages для API
             messages = [
                 {"role": "system", "content": cls.SYSTEM_PROMPT},
                 *cls._get_context(user_id)
             ]
-            
+
             # Вызов Qwen API
             response = Generation.call(
                 model=settings.QWEN_MODEL,
@@ -186,19 +194,19 @@ class QwenAI:
                 max_tokens=settings.QWEN_MAX_TOKENS,
                 result_format='message',
             )
-            
+
             if response.status_code == 200:
                 answer = response.output.choices[0].message.content
-                
+
                 # Добавляем ответ в контекст
                 cls._add_to_context(user_id, "assistant", answer)
-                
+
                 logger.info(f"🧠 ИИ ответил пользователю {user_id}")
                 return answer
             else:
                 logger.error(f"❌ Ошибка Qwen API: {response.code} - {response.message}")
                 return cls._get_fallback_response(message)
-                
+
         except Exception as e:
             logger.error(f"❌ Ошибка при вызове ИИ: {e}")
             return cls._get_fallback_response(message)
