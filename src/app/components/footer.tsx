@@ -4,8 +4,43 @@ export function Footer() {
       <div className="footer-container">
         <div className="footer-column">
           <div className="footer-logo">
-            <span className="logo-text">PLATO-INTEL</span>
-            <span className="logo-domain">.by</span>
+            <div className="footer-lamp">
+              <svg viewBox="0 0 70 90" className="footer-lamp-svg">
+                <defs>
+                  <radialGradient id="footerFlame" cx="50%" cy="55%" r="45%">
+                    <stop offset="0%" stopColor="#ffd7a8" stopOpacity="0.9" />
+                    <stop offset="50%" stopColor="#ffaa00" stopOpacity="0.7" />
+                    <stop offset="100%" stopColor="#ff6600" stopOpacity="0.3" />
+                  </radialGradient>
+                  <radialGradient id="footerMetalGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stopColor="#ffcc66" stopOpacity="0.9" />
+                    <stop offset="100%" stopColor="#cc4400" stopOpacity="0.6" />
+                  </radialGradient>
+                </defs>
+                {/* Упрощенное основание */}
+                <rect x="22" y="72" width="26" height="10" rx="2" fill="#5a5a5a" />
+                <ellipse cx="35" cy="62" rx="14" ry="4" fill="#6a6a6a" />
+                {/* Стеклянный плафон */}
+                <path d="M18 62 Q18 20 35 15 Q52 20 52 62 Z" fill="url(#footerFlame)" />
+                {/* Ободки */}
+                <ellipse cx="35" cy="16" rx="16" ry="4" fill="#6a6a6a" />
+                <ellipse cx="35" cy="62" rx="18" ry="4" fill="none" stroke="#5a5a5a" strokeWidth="2" />
+                {/* Двигатель внутри - компактный */}
+                <g transform="translate(35, 40)">
+                  <rect x="-10" y="-8" width="20" height="16" rx="2" fill="url(#footerMetalGlow)" />
+                  <rect x="-3" y="-14" width="6" height="10" rx="1" fill="#ffdd88" />
+                  <circle cx="0" cy="8" r="4" fill="#ff9933" />
+                  <line x1="-8" y1="-4" x2="-8" y2="4" stroke="#ffaa44" strokeWidth="1" />
+                  <line x1="8" y1="-4" x2="8" y2="4" stroke="#ffaa44" strokeWidth="1" />
+                </g>
+                {/* Блик */}
+                <ellipse cx="30" cy="28" rx="3" ry="4" fill="#ffffff" opacity="0.2" />
+              </svg>
+            </div>
+            <div className="footer-logo-text">
+              <span className="logo-text">PLATO-INTEL</span>
+              <span className="logo-domain">.by</span>
+            </div>
           </div>
           <p className="footer-description">
             Надёжный поставщик электротехнического оборудования для промышленности с 2003 года
@@ -88,9 +123,27 @@ export function Footer() {
 
         .footer-logo {
           display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-bottom: 12px;
+        }
+        
+        .footer-lamp {
+          width: 32px;
+          height: 42px;
+          flex-shrink: 0;
+          filter: drop-shadow(0 0 8px rgba(255, 154, 77, 0.3));
+        }
+        
+        .footer-lamp-svg {
+          width: 100%;
+          height: 100%;
+        }
+        
+        .footer-logo-text {
+          display: flex;
           align-items: baseline;
           gap: 4px;
-          margin-bottom: 8px;
         }
 
         .logo-text {
@@ -177,7 +230,12 @@ export function Footer() {
           }
           
           .footer-logo {
-            margin-bottom: 0;
+            margin-bottom: 8px;
+          }
+          
+          .footer-lamp {
+            width: 24px;
+            height: 32px;
           }
           
           .logo-text {

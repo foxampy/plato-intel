@@ -14,32 +14,107 @@ export function Header({ currentPage, onNavigate, onOpenInfo }: HeaderProps) {
       <div className="header-container">
         <div className="logo-module">
           <div className="logo" onClick={() => onNavigate("home")} style={{ cursor: "pointer" }}>
-            <div className="logo-bulb">
-              <svg viewBox="0 0 60 80" className="bulb-svg">
+            <div className="logo-lamp">
+              <svg viewBox="0 0 70 90" className="lamp-svg">
                 <defs>
-                  <radialGradient id="bulbGlow" cx="50%" cy="40%" r="50%">
-                    <stop offset="0%" stopColor="#ffd7a8" stopOpacity="0.9" />
-                    <stop offset="50%" stopColor="#ffaa00" stopOpacity="0.6" />
-                    <stop offset="100%" stopColor="#ff6600" stopOpacity="0.2" />
+                  {/* Основное свечение пламени */}
+                  <radialGradient id="flameCore" cx="50%" cy="55%" r="45%">
+                    <stop offset="0%" stopColor="#fff5e6" stopOpacity="1" />
+                    <stop offset="20%" stopColor="#ffd7a8" stopOpacity="0.95" />
+                    <stop offset="50%" stopColor="#ffaa00" stopOpacity="0.8" />
+                    <stop offset="80%" stopColor="#ff6600" stopOpacity="0.5" />
+                    <stop offset="100%" stopColor="#ff4400" stopOpacity="0.2" />
                   </radialGradient>
-                  <filter id="bulbBlur">
-                    <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+                  {/* Свечение накала металла */}
+                  <radialGradient id="metalGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stopColor="#ffdd88" stopOpacity="1" />
+                    <stop offset="40%" stopColor="#ff9933" stopOpacity="0.9" />
+                    <stop offset="100%" stopColor="#cc4400" stopOpacity="0.6" />
+                  </radialGradient>
+                  {/* Блик стекла */}
+                  <linearGradient id="glassShine" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#ffffff" stopOpacity="0.3" />
+                    <stop offset="50%" stopColor="#ffffff" stopOpacity="0.1" />
+                    <stop offset="100%" stopColor="#ffffff" stopOpacity="0.2" />
+                  </linearGradient>
+                  {/* Фильтр свечения */}
+                  <filter id="glowFilter" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="3" result="blur" />
                     <feMerge>
-                      <feMergeNode in="coloredBlur" />
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="blur" />
                       <feMergeNode in="SourceGraphic" />
                     </feMerge>
                   </filter>
+                  {/* Фильтр для металлических частей */}
+                  <filter id="metalShadow">
+                    <feDropShadow dx="1" dy="2" stdDeviation="1" floodColor="#000" floodOpacity="0.5"/>
+                  </filter>
                 </defs>
-                {/* Bulb glass */}
-                <ellipse cx="30" cy="35" rx="22" ry="26" fill="url(#bulbGlow)" filter="url(#bulbBlur)" />
-                {/* Filament */}
-                <path d="M24 35 Q30 20 36 35" stroke="#ff8800" strokeWidth="1.5" fill="none" opacity="0.8" />
-                <path d="M26 35 Q30 24 34 35" stroke="#ffaa00" strokeWidth="1" fill="none" opacity="0.6" />
-                {/* Base */}
-                <rect x="24" y="58" width="12" height="12" fill="#888" rx="1" />
-                <rect x="23" y="68" width="14" height="4" fill="#666" rx="0.5" />
-                {/* Contact */}
-                <circle cx="30" cy="74" r="2" fill="#444" />
+                
+                {/* Основание лампы - металлическое (чугунное) */}
+                <path d="M20 72 L22 82 L48 82 L50 72 Z" fill="#4a4a4a" filter="url(#metalShadow)" />
+                <rect x="18" y="68" width="34" height="8" rx="2" fill="#5a5a5a" filter="url(#metalShadow)" />
+                {/* Ребра жесткости на основании */}
+                <line x1="25" y1="68" x2="24" y2="82" stroke="#3a3a3a" strokeWidth="1.5" />
+                <line x1="35" y1="68" x2="35" y2="82" stroke="#3a3a3a" strokeWidth="1.5" />
+                <line x1="45" y1="68" x2="46" y2="82" stroke="#3a3a3a" strokeWidth="1.5" />
+                
+                {/* Корпус/держатель лампы */}
+                <path d="M23 62 L25 68 L45 68 L47 62 Z" fill="#6a6a6a" filter="url(#metalShadow)" />
+                <ellipse cx="35" cy="62" rx="14" ry="4" fill="#7a7a7a" />
+                
+                {/* Стеклянный плафон - внешний контур */}
+                <path d="M15 62 Q15 15 35 10 Q55 15 55 62 Z" fill="url(#flameCore)" opacity="0.9" />
+                <path d="M15 62 Q15 15 35 10 Q55 15 55 62 Z" fill="url(#glassShine)" />
+                
+                {/* Ободок плафона сверху */}
+                <ellipse cx="35" cy="14" rx="18" ry="5" fill="none" stroke="#5a5a5a" strokeWidth="2" />
+                <ellipse cx="35" cy="14" rx="16" ry="4" fill="#6a6a6a" />
+                
+                {/* Ободок плафона снизу */}
+                <ellipse cx="35" cy="62" rx="20" ry="5" fill="none" stroke="#5a5a5a" strokeWidth="2" />
+                
+                {/* ГОРЯЩИЙ ДВИГАТЕЛЬ ВНУТРИ */}
+                <g transform="translate(35, 38)" filter="url(#glowFilter)">
+                  {/* Корпус двигателя - накаленный */}
+                  <rect x="-12" y="-10" width="24" height="20" rx="3" fill="url(#metalGlow)" />
+                  
+                  {/* Поршень - накаленный */}
+                  <rect x="-4" y="-16" width="8" height="12" rx="1" fill="#ffdd88" />
+                  <rect x="-6" y="-8" width="12" height="4" rx="1" fill="#ffaa44" />
+                  
+                  {/* Шатун */}
+                  <line x1="0" y1="-4" x2="0" y2="8" stroke="#ffcc66" strokeWidth="3" strokeLinecap="round" />
+                  
+                  {/* Коленвал */}
+                  <circle cx="0" cy="10" r="5" fill="#ff9933" />
+                  <circle cx="0" cy="10" r="2" fill="#663311" />
+                  
+                  {/* Цилиндр - детали */}
+                  <rect x="-10" y="-8" width="20" height="2" fill="#ff8800" opacity="0.8" />
+                  <rect x="-10" y="2" width="20" height="2" fill="#ff8800" opacity="0.8" />
+                  
+                  {/* Ребра охлаждения двигателя */}
+                  <line x1="-14" y1="-6" x2="-14" y2="6" stroke="#ffaa44" strokeWidth="1.5" />
+                  <line x1="14" y1="-6" x2="14" y2="6" stroke="#ffaa44" strokeWidth="1.5" />
+                  <line x1="-12" y1="-4" x2="-12" y2="4" stroke="#ff9933" strokeWidth="1" />
+                  <line x1="12" y1="-4" x2="12" y2="4" stroke="#ff9933" strokeWidth="1" />
+                </g>
+                
+                {/* Эффект пульсации пламени - внешнее свечение */}
+                <ellipse cx="35" cy="38" rx="18" ry="22" fill="none" stroke="#ffaa00" strokeWidth="0.5" opacity="0.4">
+                  <animate attributeName="opacity" values="0.4;0.6;0.4" dur="2s" repeatCount="indefinite" />
+                  <animate attributeName="rx" values="18;19;18" dur="2s" repeatCount="indefinite" />
+                </ellipse>
+                
+                {/* Блики на стекле */}
+                <ellipse cx="28" cy="25" rx="4" ry="6" fill="#ffffff" opacity="0.3" transform="rotate(-20 28 25)" />
+                <circle cx="45" cy="45" r="2" fill="#ffffff" opacity="0.2" />
+                
+                {/* Крепежные болты на основании */}
+                <circle cx="22" cy="75" r="1.5" fill="#333" />
+                <circle cx="48" cy="75" r="1.5" fill="#333" />
               </svg>
             </div>
             <div className="logo-text-container">
@@ -144,24 +219,32 @@ export function Header({ currentPage, onNavigate, onOpenInfo }: HeaderProps) {
           gap: 12px;
         }
 
-        .logo-bulb {
-          width: 50px;
-          height: 70px;
+        .logo-lamp {
+          width: 55px;
+          height: 75px;
           flex-shrink: 0;
+          filter: drop-shadow(0 0 12px rgba(255, 154, 77, 0.4));
         }
 
-        .bulb-svg {
+        .lamp-svg {
           width: 100%;
           height: 100%;
-          animation: bulb-pulse 3s infinite ease-in-out;
+          animation: lamp-flicker 4s infinite ease-in-out;
         }
 
-        @keyframes bulb-pulse {
+        /* Анимация мерцания пламени газовой лампы */
+        @keyframes lamp-flicker {
           0%, 100% {
-            filter: drop-shadow(0 0 8px #ffaa00) drop-shadow(0 0 16px #ff8800);
+            filter: drop-shadow(0 0 8px #ffaa00) drop-shadow(0 0 16px #ff8800) drop-shadow(0 0 4px #ff4400);
+          }
+          25% {
+            filter: drop-shadow(0 0 10px #ffaa00) drop-shadow(0 0 20px #ff8800) drop-shadow(0 0 6px #ff4400);
           }
           50% {
-            filter: drop-shadow(0 0 12px #ffaa00) drop-shadow(0 0 24px #ff8800) drop-shadow(0 0 32px #ff6600);
+            filter: drop-shadow(0 0 14px #ffaa00) drop-shadow(0 0 28px #ff8800) drop-shadow(0 0 8px #ff4400);
+          }
+          75% {
+            filter: drop-shadow(0 0 9px #ffaa00) drop-shadow(0 0 18px #ff8800) drop-shadow(0 0 5px #ff4400);
           }
         }
 
@@ -328,9 +411,9 @@ export function Header({ currentPage, onNavigate, onOpenInfo }: HeaderProps) {
             gap: 8px;
           }
 
-          .logo-bulb {
-            width: 32px;
-            height: 44px;
+          .logo-lamp {
+            width: 38px;
+            height: 52px;
           }
           
           .logo-text-container {
