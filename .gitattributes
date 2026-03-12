@@ -1,0 +1,7 @@
+# Git attributes for GitHub Pages MIME types
+*.js text/javascript
+*.mjs text/javascript
+*.css text/css
+*.svg image/svg+xml
+*.json application/json
+*.html text/html
