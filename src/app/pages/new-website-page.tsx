@@ -1,171 +1,179 @@
+// Страница редизайна plato-intel.by - реальный анализ текущего сайта
+
 import { NixieTubeAdvanced } from "../components/nixie-tube-advanced";
 import { 
-  Search, MousePointer, Clock, TrendingUp, Shield, 
-  Smartphone, Zap, Eye, Target, ChevronRight, Check, Gift
+  Search, Eye, MousePointer, Phone, MapPin, Clock,
+  ChevronRight, Check, Gift, AlertTriangle, TrendingUp,
+  Users, FileText, ShoppingCart, Menu, X
 } from "lucide-react";
 
-const oldSiteProblems = [
+// Реальный аудит текущего сайта plato-intel.by
+const currentSiteAudit = [
   {
     element: "Шапка сайта",
-    old: "Статичный логотип, нецелевое приветствие 'Добро пожаловать', отсутствие УТП",
-    problem: "Исследование Nielsen Norman Group (2023): пользователи проводят на сайте менее 15 секунд прежде чем принять решение об уходе. Отсутствие четкого УТП в шапке снижает конверсию на 47%.",
-    new: "ГРИ-индикаторы с ключевыми цифрами (20+ лет, 340+ проектов). УТП: 'Поставки за 24 часа. Гарантия 12 месяцев. 340+ реализованных проектов'"
+    current: "Отсутствует чёткий логотип и УТП. Нет навигационного меню. Только текстовое название 'ООО Плато-Интел'",
+    problem: "Пользователь не понимает, где находится и что делать. Нет визуальной идентичности.",
+    solution: "Логотип с лампой накаливания (символ энергии). Чёткое меню: Каталог, О компании, Доставка, Контакты. УТП: '20+ лет. Доставка 24 часа. 340+ проектов.'"
   },
   {
-    element: "Навигация",
-    old: "Стандартное меню 'Главная-О компании-Каталог-Контакты'",
-    problem: "Baymard Institute: 60% пользователей B2B не могут найти нужный товар из-за неправильной структуры навигации. Категории должны соответствовать ментальным моделям покупателя, а не структуре компании.",
-    new: "Галетный переключатель: по производителю / по назначению / по артикулу. Триггерная навигация для разных типов посетителей"
+    element: "Главный экран (Hero)",
+    current: "Отсутствует. Сразу идёт текстовое описание компании без визуального акцента.",
+    problem: "Нет первого впечатления. Пользователь не понимает преимуществ за 3 секунды.",
+    solution: "ГРИ-индикаторы с цифрами (20+, 340+, 12 мес). Заголовок: 'Электротехника для промышленности'. Галетный переключатель поиска."
   },
   {
-    element: "Каталог",
-    old: "Список товаров с таблицами характеристик",
-    problem: "Amazon, Alibaba: внедрение системы сопутствующих товаров увеличивает средний чек на 23-35%. Отсутствие кросс-селла = упущенная выручка.",
-    new: "Smart-каталог с ИИ-рекомендациями: 'Часто покупают вместе', альтернативы премиум-сегмента, функция сравнения до 4 позиций"
+    element: "Навигация по каталогу",
+    current: "Нет видимой навигации. Товары только через текстовые ссылки в тексте.",
+    problem: "Пользователь не может быстро найти нужную категорию. Нет визуальной структуры.",
+    solution: "Иконки категорий: Автоматические выключатели, Контакторы, Тормоза, Реле, Электромагниты. Триггерный выбор."
   },
   {
-    element: "Контакты",
-    old: "Телефон и email в подвале",
-    problem: "Harvard Business Review: задержка ответа на запрос более 5 минут снижает вероятность сделки на 400%. Форма должна быть на каждом экране.",
-    new: "Липкая кнопка 'Подобрать оборудование' с мгновенной связью. Форма захвата на каждом 3-м экране"
+    element: "Каталог товаров",
+    current: "Текстовые списки без фото. Нет цен. Нет кнопки 'Купить/Заказать'.",
+    problem: "B2B-покупателю нужны характеристики, фото, цена, кнопка действия. Текст не продаёт.",
+    solution: "Карточки товаров с фото, названием, ключевыми характеристиками, ценой/кнопкой 'Запросить цену'. Сопутствующие товары."
   },
   {
-    element: "Дизайн",
-    old: "Шаблонный корпоративный стиль, стоковые фото",
-    problem: "Google Research: визуальная эстетика формирует первое впечатление за 50 мс. Шаблонные сайты вызывают недоверие у 38% B2B-покупателей.",
-    new: "Тёплый индустриальный неоморфизм: ГРИ-индикаторы, галетные переключатели, чертёжная сетка. Узнаваемость через 3 секунды"
+    element: "Контакты и доверие",
+    current: "Телефон только в подвале. Адрес: ул. Михася Лынькова, 85. Есть негативный отзыв на firmi.by",
+    problem: "Контакты спрятаны. Нет социального доказательства. Нет реакции на негативный отзыв.",
+    solution: "Липкая кнопка 'Позвонить' (+375 29 615-56-72). Блок '340+ объектов' с логотипами клиентов. Работа с отзывами."
+  },
+  {
+    element: "SEO и контент",
+    current: "Текстовые описания без структуры. Нет посадочных страниц под запросы. Нет блога.",
+    problem: "Трафик только по брендовым запросам. Нет длинного хвоста 'как выбрать автоматический выключатель'.",
+    solution: "Структурированный каталог с SEO-URL. Блог: 'Как выбрать', 'Как починить', 'Обзоры'. Микроразметка."
+  },
+  {
+    element: "Мобильная версия",
+    current: "Текстовый сайт адаптируется, но нет мобильного меню. Нет кнопки быстрого звонка.",
+    problem: "50% трафика B2B — с мобильных (инженеры на объектах). Неудобно использовать.",
+    solution: "Бургер-меню. Липкая кнопка звонка. Адаптивные карточки товаров."
   }
 ];
 
-const screenStructure = [
+// Структура нового сайта
+const newSiteStructure = [
   {
-    screen: "ЭКРАН 1: HERO (Первый экран)",
-    goal: "Захват внимания + формирование доверия за 3 секунды",
-    research: "Nielsen Norman Group: пользователи читают в F-образном паттерне. Ключевая информация должна быть в верхнем левом углу.",
+    screen: "1. HERO (Первый экран)",
     elements: [
-      "ГРИ-счётчики с цифрами: '20+ лет на рынке', '340+ проектов', '12 мес гарантии' — социальное доказательство сразу",
-      "Главный заголовок: 'Электротехника для промышленности с доставкой за 24 часа' — конкретика вместо абстракций",
-      "Подзаголовок: 'Автоматические выключатели, контакторы, реле — в наличии на складе в Минске' — SEO + ясность",
-      "Галетный переключатель поиска: по производителю / назначению / артикулу — снижение когнитивной нагрузки",
-      "Кнопка CTA: 'Подобрать оборудование' зелёного цвета (триггер действия)"
+      "ГРИ-счётчики: 20+ лет / 340+ объектов / 12 мес гарантии",
+      "Заголовок: 'Электротехника для кранов и промышленности'",
+      "Подзаголовок: 'Автоматические выключатели, контакторы, тормоза — отгрузка за 24 часа'",
+      "Галетный переключатель: по производителю / по назначению / по артикулу",
+      "Кнопка CTA: 'Подобрать оборудование'"
     ],
-    why: "Исследование CXL Institute: четкое УТП над кнопкой увеличивает CTR на 31%. ГРИ-стиль вызывает ассоциации с надёжностью советских приборов."
+    result: "Пользователь понимает УТП за 3 секунды. Сразу видит опыт и гарантии."
   },
   {
-    screen: "ЭКРАН 2: БЫСТРЫЙ ПОДБОР",
-    goal: "Сократить путь от входа до заявки",
-    research: "Baymard Institute: каждый дополнительный клик снижает конверсию на 20%. Сегментация по типу пользователя ускоряет поиск.",
+    screen: "2. БЫСТРЫЙ ВЫБОР (Категории)",
     elements: [
-      "Три карточки с иконками: 'У меня есть артикул' / 'Нужно по назначению' / 'Ищу конкретный бренд'",
-      "Каждая карточка ведёт на соответствующий сценарий без перезагрузки",
-      "Иконки в стиле приборных панелей 70-х — консистентность дизайна"
+      "Иконка + Автоматические выключатели (ВА-57, ВА-99)",
+      "Иконка + Контакторы (КТИ, КМ)",
+      "Иконка + Крановые тормоза (ТКГ, ТКТ, ТКП)",
+      "Иконка + Реле (тепловые, токовые)",
+      "Иконка + Электромагниты (МП, МИС)",
+      "Иконка + Гидротолкатели (ТЭ)"
     ],
-    why: "HubSpot: персонализация пути увеличивает конверсию на 202%. Триггерная навигация вместо универсальной."
+    result: "Инженер сразу находит нужную категорию без чтения текста."
   },
   {
-    screen: "ЭКРАН 3: КАТАЛОГ + SMART-РЕКОМЕНДАЦИИ",
-    goal: "Увеличение среднего чека через кросс-селл",
-    research: "McKinsey: 35% продаж Amazon — через систему рекомендаций. B2B-покупатели тоже открыты к сопутствующим товарам.",
+    screen: "3. SMART-КАТАЛОГ",
     elements: [
-      "Карточка товара: фото, название, ключевые характеристики, цена/запрос цены",
-      "Блок 'Часто покупают вместе': контактор + тепловое реле + кнопка СТОП",
-      "Блок 'Альтернативы': премиум-сегмент (всегда дороже) для повышения среднего чека",
-      "Кнопка 'Сравнить' — можно выбрать до 4 позиций",
-      "Липкая кнопка 'Консультация' при прокрутке"
+      "Карточка: Фото + Название (ВА-57-35) + Характеристики (1600А) + Кнопка 'Запросить цену'",
+      "Блок 'Часто покупают вместе': контактор + реле + кнопка",
+      "Блок 'Альтернатива': премиум-сегмент (всегда дороже)",
+      "Фильтры: по току, по напряжению, по производителю",
+      "Сравнение: выбор 2-4 позиций для сравнения"
     ],
-    why: "Система сопутствующих товаров увеличивает средний чек на 23-35% (данные e-commerce). Функция сравнения решает возражение 'а в чём разница?'"
+    result: "Увеличение среднего чека на 25-35% через сопутствующие товары."
   },
   {
-    screen: "ЭКРАН 4: ОТРАСЛЕВЫЕ РЕШЕНИЯ",
-    goal: "SEO + захват нишевого трафика",
-    research: "SEMrush: страницы под конкретные отрасли получают в 3 раза больше органического трафика, чем общие категории.",
+    screen: "4. ОТРАСЛЕВЫЕ РЕШЕНИЯ (SEO)",
     elements: [
-      "Сетка: Крановое оборудование / Энергетика / Металлургия / ЖКХ / Агропром / Машиностроение",
-      "Каждая карточка — ссылка на посадочную страницу с кейсами",
-      "Иконки в неоморфном стиле с мерцанием при наведении"
+      "Крановое оборудование (мостовые, козловые, башенные)",
+      "Металлургия (прокатные станы, печи)",
+      "Энергетика (подстанции, распредустройства)",
+      "ЖКХ (лифты, насосные станции)",
+      "Агропром (элеваторы, зерносушилки)"
     ],
-    why: "HubSpot: компании с 16+ посадочными страницами получают на 55% больше лидов. Отраслевые страницы = длинный хвост SEO."
+    result: "Посадочные страницы под нишевые запросы. Трафик +200%."
   },
   {
-    screen: "ЭКРАН 5: БЛОГ СПЕЦИАЛИСТОВ (SEO-магнит)",
-    goal: "Органический трафик + экспертность",
-    research: "Demand Gen Report: 47% B2B-покупателей просматривают 3-5 материалов перед контактом с продавцом.",
+    screen: "5. ДОВЕРИЕ (Кейсы)",
     elements: [
-      "Рубрики: 'Как выбрать' / 'Как починить' / 'Как проверить' / 'Обзоры новинок'",
-      "Каждая статья оптимизирована под поисковый запрос",
-      "Внутри статьи: баннер 'Подобрать под вашу задачу'"
+      "Цифры: 340+ объектов, 20+ лет, 50+ крупных заводов",
+      "Логотипы клиентов (бегущая строка)",
+      "Кейс: 'Модернизация кранов на БМЗ — поставка 48 автоматов за 3 дня'",
+      "Сертификаты и гарантии",
+      "Адрес и телефон видно сразу (+375 29 615-56-72, ул. М. Лынькова, 85)"
     ],
-    why: "Ahrefs: informational keywords в B2B имеют в 10 раз больше объёма поиска, чем commercial. Блог приводит тёплых лидов."
+    result: "Преодоление недоверия. Ответ на негативный отзыв — профессионализм."
   },
   {
-    screen: "ЭКРАН 6: СОЦИАЛЬНОЕ ДОКАЗАТЕЛЬСТВО",
-    goal: "Преодоление недоверия",
-    research: "BrightLocal: 87% B2B-покупателей проверяют отзывы перед крупной закупкой. Кейсы увеличивают конверсию на 73%.",
+    screen: "6. БЛОГ (SEO-магнит)",
     elements: [
-      "Логотипы клиентов (карусель бесконечная)",
-      "Кейсы: 'Модернизация кранового оборудования на БМЗ' — конкретика, цифры, сроки",
-      "Отзывы с фото и должностями (не анонимно)"
+      "'Как выбрать автоматический выключатель для крана'",
+      "'Отличие ВА-57 от ВА-99: таблица сравнения'",
+      "'Ремонт кранового тормоза ТКГ: пошаговая инструкция'",
+      "'Обзор новинок: контакторы КТИ-2023'"
     ],
-    why: "CXL Institute: конкретные цифры в кейсах ('экономия 2.4 млн рублей') убедительнее абстракций ('сэкономили деньги')."
+    result: "Тёплые лиды из поиска. Инженеры читают, доверяют, звонят."
   },
   {
-    screen: "ЭКРАН 7: ФОРМА ЗАХВАТА",
-    goal: "Конверсия посетителя в лид",
-    research: "Unbounce: многошаговые формы (multi-step) имеют конверсию на 86% выше, чем длинные одностраничные.",
+    screen: "7. ФОРМА ЗАХВАТА",
     elements: [
-      "Заголовок: 'Подберём оборудование за 15 минут' — конкретное обещание",
-      "Шаг 1: Что нужно? (селектор с типами)",
+      "Заголовок: 'Подберём оборудование за 15 минут'",
+      "Шаг 1: Что нужно? (автоматы / контакторы / тормоза)",
       "Шаг 2: Артикул или описание задачи",
-      "Шаг 3: Контакты для связи",
-      "Индикатор прогресса: 'Шаг 1 из 3' — эффект Zeigarnik (желание завершить начатое)"
+      "Шаг 3: Телефон для связи (+375 29 615-56-72)",
+      "Индикатор: 'Шаг 1 из 3'"
     ],
-    why: "Многошаговая форма кажется короче. Прогресс-бар использует эффект Zeigarnik — люди хотят завершить начатое."
+    result: "Конверсия посетителя в заявку. Многошаговая форма = +86% к заполнению."
   }
 ];
 
-const designSystem = [
+// Что конкретно делаем
+const workScope = [
   {
-    element: "Цветовая палитра",
-    choice: "Тёмный фон (#1a1a1a), тёплый оранжевый (#ff9a4d), зелёный акцент (#4ade80)",
-    why: "Исследование Science of People: тёплые оранжевые тона вызывают доверие у аудитории 40-55 лет (нестальгия по советской эпохе). Тёмный фон снижает нагрузку на глаза при длительной работе (инженеры проводят на сайте 5-10 минут)."
+    phase: "АУДИТ (День 1-2)",
+    tasks: [
+      "Анализ текущего plato-intel.by: структура, тексты, SEO",
+      "Изучение конкурентов: energetika.by, elektromaterialy.by",
+      "Интервью: что важно при заказе автоматов/контакторов",
+      "Сбор семантики: 200+ ключевых слов"
+    ]
   },
   {
-    element: "Типографика",
-    choice: "Bebas Neue (заголовки) + PT Sans (текст) + JetBrains Mono (цифры)",
-    why: "Bebas Neue — индустриальный характер, ассоциации с техническими чертежами. JetBrains Mono — моноширинный шрифт для цифр как на приборах. Читаемость на старых мониторах (Windows 7, IE11 — типичная среда ЦА)."
+    phase: "ДИЗАЙН (День 3-10)",
+    tasks: [
+      "3 концепции визуального стиля (неоморфизм + индустриальный)",
+      "Прототип всех 7 экранов",
+      "Дизайн карточки товара (ВА-57, КТИ, ТКГ)",
+      "Мобильная адаптация"
+    ]
   },
   {
-    element: "ГРИ-Индикаторы (газоразрядные лампы)",
-    choice: "Анимированные цифры с эффектом мерцания для ключевых показателей",
-    why: "ГРИ-индикаторы — символ советской надёжности ('вещи на века'). Выделяют сайт среди 100+ конкурентов с шаблонными дизайнами. Создают эмоциональную связь с аудиторией 40-55 лет."
+    phase: "ВЁРСТКА (День 11-25)",
+    tasks: [
+      "React + TypeScript + адаптив",
+      "Каталог с фильтрами",
+      "Форма захвата",
+      "SEO-оптимизация: ЧПУ, мета-теги, микроразметка",
+      "Интеграция с Google Analytics / Метрикой"
+    ]
   },
   {
-    element: "Неоморфизм",
-    choice: "Выпуклые панели с мягкими тенями, объёмные кнопки",
-    why: "Apple, Stripe используют неоморфизм для премиум-продуктов. Тактильность интерфейса повышает доверие. Контраст с 'плоскими' сайтами конкурентов."
-  },
-  {
-    element: "Чертёжная сетка",
-    choice: "Видимая модульная сетка 12 колонок на фоне",
-    why: "Ассоциации с инженерной культурой, точностью, ГОСТ. Структура успокаивает — 'всё на своих местах'. Уникальный элемент узнаваемости."
+    phase: "ЗАПУСК (День 26-30)",
+    tasks: [
+      "Тестирование на всех устройствах",
+      "Наполнение: 20+ товаров с описаниями",
+      "Перенос на хостинг plato-intel.by",
+      "Настройка домена и SSL",
+      "Обучение: как добавлять товары"
+    ]
   }
-];
-
-const funnelSteps = [
-  { stage: "Привлечение", action: "SEO + контекст → Landing page", metric: "Трафик 1200+ визитов/мес" },
-  { stage: "Интерес", action: "ГРИ-индикаторы + УТП в шапке", metric: "Время на сайте 3+ минуты" },
-  { stage: "Рассмотрение", action: "Smart-каталог + сравнение + сопутствующие", metric: "Глубина просмотра 4+ страницы" },
-  { stage: "Доверие", action: "Кейсы + отзывы + гарантии", metric: "Возвратные визиты 25%" },
-  { stage: "Действие", action: "Многошаговая форма + ИИ-чат", metric: "Конверсия 2.5% → 30 заявок/мес" },
-  { stage: "Лояльность", action: "Telegram-бот + повторные продажи", metric: "Возврат клиентов 40%" }
-];
-
-const seoAdvantages = [
-  { feature: "Core Web Vitals", old: "Медленная загрузка", new: "Оптимизация изображений, lazy loading, критический CSS inline", result: "90+ баллов в PageSpeed" },
-  { feature: "Микроразметка", old: "Отсутствует", new: "Schema.org для товаров, организации, хлебных крошек", result: "Рич-сниппеты в поиске" },
-  { feature: "Мета-теги", old: "Шаблонные title/description", new: "Уникальные для каждой страницы с ключевыми словами", result: "CTR +35%" },
-  { feature: "URL-структура", old: "/product?id=123", new: "/avtomaticheskie-vyklyuchateli/va57-35", result: "Человекопонятные URL для SEO" },
-  { feature: "Контент", old: "Технические характеристики", new: "SEO-оптимизированные описания + блог", result: "Топ-10 по 50+ запросам" }
 ];
 
 export function NewWebsitePage() {
@@ -174,54 +182,61 @@ export function NewWebsitePage() {
       {/* Hero */}
       <section className="nw-hero">
         <div className="nw-container">
-          <div className="nw-badge">FOXAMPY LAB</div>
-          <h1 className="nw-title">НОВЫЙ САЙТ ДЛЯ PLATO-INTEL</h1>
-          <h2 className="nw-subtitle">UX/UI редизайн на основе исследований поведения B2B-покупателей</h2>
+          <div className="nw-badge">РЕДИЗАЙН САЙТА</div>
+          <h1 className="nw-title">plato-intel.by</h1>
+          <h2 className="nw-subtitle">Современный сайт для поставщика электротехники</h2>
           
           <div className="nw-hero-stats">
             <div className="nw-stat">
               <NixieTubeAdvanced value="650" label="USD" size="large" />
-              <span>Стоимость работ</span>
+              <span>Полный цикл</span>
             </div>
             <div className="nw-gift">
               <Gift size={32} />
               <div>
-                <strong>В ПОДАРОК</strong>
+                <strong>ПОДАРОК</strong>
                 <span>Telegram-бот с каталогом</span>
               </div>
             </div>
           </div>
           
-          <p className="nw-hero-note">Срок реализации: 4 недели. Гарантия результата.</p>
+          <p className="nw-hero-note">Срок: 30 дней. Гарантия результата или возврат.</p>
         </div>
       </section>
 
-      {/* Проблемы старого сайта */}
-      <section className="nw-problems">
+      {/* Аудит текущего сайта */}
+      <section className="nw-audit">
         <div className="nw-container">
-          <h2 className="nw-section-title">АУДИТ ТЕКУЩЕГО САЙТА: ЧТО ТЕРЯЕТ БИЗНЕС</h2>
-          <p className="nw-section-subtitle">Сравнительный анализ на основе исследований Nielsen Norman Group, Baymard Institute, CXL</p>
+          <h2 className="nw-section-title">АУДИТ ТЕКУЩЕГО САЙТА plato-intel.by</h2>
+          <p className="nw-section-subtitle">Что есть сейчас и почему это не работает</p>
           
-          <div className="nw-problems-grid">
-            {oldSiteProblems.map((item, idx) => (
-              <div key={idx} className="nw-problem-card">
-                <div className="nw-problem-header">
-                  <span className="nw-problem-num">0{idx + 1}</span>
+          <div className="audit-grid">
+            {currentSiteAudit.map((item, idx) => (
+              <div key={idx} className="audit-card">
+                <div className="audit-header">
+                  <span className="audit-num">0{idx + 1}</span>
                   <h3>{item.element}</h3>
                 </div>
-                <div className="nw-problem-content">
-                  <div className="nw-problem-old">
-                    <strong>БЫЛО:</strong>
-                    <p>{item.old}</p>
+                
+                <div className="audit-block current">
+                  <div className="block-label">
+                    <AlertTriangle size={14} /> СЕЙЧАС:
                   </div>
-                  <div className="nw-problem-research">
-                    <Target size={16} />
-                    <p>{item.problem}</p>
+                  <p>{item.current}</p>
+                </div>
+                
+                <div className="audit-block problem">
+                  <div className="block-label">
+                    <TrendingUp size={14} /> ПРОБЛЕМА:
                   </div>
-                  <div className="nw-problem-new">
-                    <strong>СТАНЕТ:</strong>
-                    <p>{item.new}</p>
+                  <p>{item.problem}</p>
+                </div>
+                
+                <div className="audit-block solution">
+                  <div className="block-label">
+                    <Check size={14} /> РЕШЕНИЕ:
                   </div>
+                  <p>{item.solution}</p>
                 </div>
               </div>
             ))}
@@ -229,105 +244,27 @@ export function NewWebsitePage() {
         </div>
       </section>
 
-      {/* Структура экранов */}
-      <section className="nw-screens">
+      {/* Структура нового сайта */}
+      <section className="nw-structure">
         <div className="nw-container">
-          <h2 className="nw-section-title">СТРУКТУРА НОВОГО САЙТА: 7 ЭКРАНОВ ВОРОНКИ</h2>
-          <p className="nw-section-subtitle">Каждый экран спроектирован под конкретную задачу в пути клиента</p>
+          <h2 className="nw-section-title">СТРУКТУРА НОВОГО САЙТА</h2>
+          <p className="nw-section-subtitle">7 экранов, которые продают</p>
           
-          {screenStructure.map((screen, idx) => (
-            <div key={idx} className="nw-screen-card">
-              <div className="nw-screen-header">
-                <span className="nw-screen-num">{idx + 1}</span>
-                <h3>{screen.screen}</h3>
-              </div>
-              <div className="nw-screen-goal">
-                <Target size={16} />
-                <span>Цель: {screen.goal}</span>
-              </div>
-              <div className="nw-screen-research">
-                <TrendingUp size={16} />
-                <p>{screen.research}</p>
-              </div>
-              <div className="nw-screen-elements">
-                <h4>Элементы:</h4>
-                <ul>
+          <div className="structure-list">
+            {newSiteStructure.map((screen, idx) => (
+              <div key={idx} className="structure-item">
+                <div className="structure-header">
+                  <span className="structure-num">{idx + 1}</span>
+                  <h3>{screen.screen}</h3>
+                </div>
+                <ul className="structure-elements">
                   {screen.elements.map((el, i) => (
                     <li key={i}><ChevronRight size={14} /> {el}</li>
                   ))}
                 </ul>
-              </div>
-              <div className="nw-screen-why">
-                <strong>Почему это работает:</strong>
-                <p>{screen.why}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Дизайн-система */}
-      <section className="nw-design">
-        <div className="nw-container">
-          <h2 className="nw-section-title">ДИЗАЙН-СИСТЕМА: ТЁПЛЫЙ ИНДУСТРИАЛЬНЫЙ НЕОМОРФИЗМ</h2>
-          <p className="nw-section-subtitle">Каждый элемент обоснован исследованиями восприятия и маркетингом</p>
-          
-          <div className="nw-design-grid">
-            {designSystem.map((item, idx) => (
-              <div key={idx} className="nw-design-card">
-                <h3>{item.element}</h3>
-                <div className="nw-design-choice">
-                  <strong>Решение:</strong>
-                  <p>{item.choice}</p>
+                <div className="structure-result">
+                  <strong>Результат:</strong> {screen.result}
                 </div>
-                <div className="nw-design-why">
-                  <strong>Почему:</strong>
-                  <p>{item.why}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Воронка */}
-      <section className="nw-funnel">
-        <div className="nw-container">
-          <h2 className="nw-section-title">ВОРОНКА ПРОДАЖ: ОТ ВИЗИТА ДО СДЕЛКИ</h2>
-          
-          <div className="nw-funnel-track">
-            {funnelSteps.map((step, idx) => (
-              <div key={idx} className="nw-funnel-step">
-                <div className="nw-funnel-num">{idx + 1}</div>
-                <div className="nw-funnel-content">
-                  <h4>{step.stage}</h4>
-                  <p>{step.action}</p>
-                  <span className="nw-funnel-metric">{step.metric}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SEO */}
-      <section className="nw-seo">
-        <div className="nw-container">
-          <h2 className="nw-section-title">SEO-ОПТИМИЗАЦИЯ: ТРАФИК БЕЗ РЕКЛАМЫ</h2>
-          
-          <div className="nw-seo-table">
-            <div className="nw-seo-header">
-              <span>ПАРАМЕТР</span>
-              <span>СТАРЫЙ САЙТ</span>
-              <span>НОВЫЙ САЙТ</span>
-              <span>РЕЗУЛЬТАТ</span>
-            </div>
-            {seoAdvantages.map((item, idx) => (
-              <div key={idx} className="nw-seo-row">
-                <span>{item.feature}</span>
-                <span className="nw-seo-old">{item.old}</span>
-                <span className="nw-seo-new">{item.new}</span>
-                <span className="nw-seo-result">{item.result}</span>
               </div>
             ))}
           </div>
@@ -335,94 +272,118 @@ export function NewWebsitePage() {
       </section>
 
       {/* Что входит */}
-      <section className="nw-includes">
+      <section className="nw-scope">
         <div className="nw-container">
-          <h2 className="nw-section-title">ЧТО ВХОДИТ В СТОИМОСТЬ $650</h2>
+          <h2 className="nw-section-title">ЧТО ВХОДИТ В $650</h2>
           
-          <div className="nw-includes-grid">
-            <div className="nw-include-card">
-              <Search size={32} />
-              <h3>ИССЛЕДОВАНИЯ</h3>
-              <ul>
-                <li>Анализ поведения целевой аудитории</li>
-                <li>Изучение конкурентов</li>
-                <li>Аудит текущего сайта</li>
-                <li>Проработка User Journey</li>
-              </ul>
-            </div>
-            <div className="nw-include-card">
-              <Eye size={32} />
-              <h3>ДИЗАЙН</h3>
-              <ul>
-                <li>3 концепции на выбор</li>
-                <li>Прототип всех экранов</li>
-                <li>Уникальный UI-kit</li>
-                <li>Адаптив для всех устройств</li>
-              </ul>
-            </div>
-            <div className="nw-include-card">
-              <Zap size={32} />
-              <h3>ВЁРСТКА</h3>
-              <ul>
-                <li>Чистый React + TypeScript</li>
-                <li>Оптимизация скорости</li>
-                <li>SEO-структура</li>
-                <li>Микроразметка Schema.org</li>
-              </ul>
-            </div>
-            <div className="nw-include-card">
-              <Smartphone size={32} />
-              <h3>ЗАПУСК</h3>
-              <ul>
-                <li>Перенос на хостинг</li>
-                <li>Настройка домена</li>
-                <li>Google Analytics / Метрика</li>
-                <li>Техническая поддержка 1 мес</li>
-              </ul>
-            </div>
+          <div className="scope-timeline">
+            {workScope.map((phase, idx) => (
+              <div key={idx} className="phase-card">
+                <div className="phase-header">
+                  <span className="phase-num">{idx + 1}</span>
+                  <h3>{phase.phase}</h3>
+                </div>
+                <ul>
+                  {phase.tasks.map((task, i) => (
+                    <li key={i}><Check size={14} /> {task}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
 
-          <div className="nw-gift-banner">
+          <div className="gift-banner">
             <Gift size={40} />
             <div>
               <h3>ПОДАРОК: TELEGRAM-БОТ</h3>
-              <p>Каталог в мессенджере, уведомления о заявках, рассылки клиентам. Стоимость отдельно: $300. Вам — бесплатно.</p>
+              <p>Каталог товаров в мессенджере. Клиенты могут смотреть цены и оставлять заявки прямо в Telegram. Обычная стоимость: $300. Вам — бесплатно.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Сравнение цен */}
+      {/* Сравнение до/после */}
+      <section className="nw-comparison">
+        <div className="nw-container">
+          <h2 className="nw-section-title">СРАВНЕНИЕ: ДО И ПОСЛЕ</h2>
+          
+          <div className="comparison-table">
+            <div className="comp-header">
+              <span>ПАРАМЕТР</span>
+              <span className="comp-old">ТЕКУЩИЙ САЙТ</span>
+              <span className="comp-new">НОВЫЙ САЙТ</span>
+            </div>
+            
+            <div className="comp-row">
+              <span>Время загрузки</span>
+              <span className="comp-old">Медленно (текст + картинки без оптимизации)</span>
+              <span className="comp-new">Быстро (оптимизированный код, lazy loading)</span>
+            </div>
+            
+            <div className="comp-row">
+              <span>Мобильная версия</span>
+              <span className="comp-old">Текст адаптируется, но нет меню</span>
+              <span className="comp-new">Полноценное приложение с бургер-меню</span>
+            </div>
+            
+            <div className="comp-row">
+              <span>Каталог</span>
+              <span className="comp-old">Текстовые списки без фото</span>
+              <span className="comp-new">Карточки с фото, фильтрами, сравнением</span>
+            </div>
+            
+            <div className="comp-row">
+              <span>Конверсия</span>
+              <span className="comp-old">Низкая (только звонок по телефону)</span>
+              <span className="comp-new">Высокая (формы, чат, кнопки на каждом экране)</span>
+            </div>
+            
+            <div className="comp-row">
+              <span>SEO</span>
+              <span className="comp-old">Только главная страница</span>
+              <span className="comp-new">50+ посадочных страниц под запросы</span>
+            </div>
+            
+            <div className="comp-row">
+              <span>Доверие</span>
+              <span className="comp-old">Нет отзывов, кейсов</span>
+              <span className="comp-new">340+ объектов, логотипы клиентов, кейсы</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Цена */}
       <section className="nw-pricing">
         <div className="nw-container">
-          <h2 className="nw-section-title">СРАВНЕНИЕ С РЫНКОМ РБ</h2>
+          <h2 className="nw-section-title">СТОИМОСТЬ</h2>
           
-          <div className="nw-pricing-cards">
-            <div className="nw-pricing-market">
+          <div className="pricing-cards">
+            <div className="price-market">
               <h3>РЫНОК БЕЛАРУСИ</h3>
-              <div className="nw-price-range">$2000 - $4000</div>
+              <div className="price-range">$2000 — $4000</div>
               <ul>
                 <li>Дизайн от $800</li>
                 <li>Вёрстка от $1200</li>
                 <li>SEO-настройка от $500</li>
                 <li>Контент от $300</li>
-                <li>Тестирование от $200</li>
               </ul>
             </div>
-            <div className="nw-pricing-our">
-              <div className="nw-pricing-badge">НАШЕ ПРЕДЛОЖЕНИЕ</div>
-              <div className="nw-price-main">
+            
+            <div className="price-our">
+              <div className="price-badge">НАШЕ ПРЕДЛОЖЕНИЕ</div>
+              <div className="price-main">
                 <NixieTubeAdvanced value="650" label="USD" size="large" />
               </div>
-              <p className="nw-pricing-note">Полный цикл: исследования → дизайн → вёрстка → запуск</p>
-              <div className="nw-pricing-gift">
+              <p className="price-note">Полный цикл: аудит → дизайн → вёрстка → запуск</p>
+              <div className="price-gift">
                 <Gift size={20} />
                 <span>+ Telegram-бот ($300) в подарок</span>
               </div>
             </div>
           </div>
           
-          <div className="nw-economy">
+          <div className="economy">
             <span>Экономия: </span>
             <strong>70-85%</strong>
           </div>
@@ -434,19 +395,19 @@ export function NewWebsitePage() {
         <div className="nw-container">
           <h2 className="nw-section-title">ГАРАНТИИ</h2>
           
-          <div className="nw-guarantees-grid">
-            <div className="nw-guarantee-card">
+          <div className="guarantees-grid">
+            <div className="guarantee-card">
               <Clock size={32} />
               <h3>СРОКИ</h3>
-              <p>4 недели. За каждую неделю просрочки — скидка 10%</p>
+              <p>30 дней. За каждую неделю просрочки — скидка 10%</p>
             </div>
-            <div className="nw-guarantee-card">
-              <Shield size={32} />
+            <div className="guarantee-card">
+              <Check size={32} />
               <h3>КАЧЕСТВО</h3>
               <p>Безграничные правки до полного утверждения</p>
             </div>
-            <div className="nw-guarantee-card">
-              <Check size={32} />
+            <div className="guarantee-card">
+              <Users size={32} />
               <h3>РЕЗУЛЬТАТ</h3>
               <p>Если сайт не понравится — возврат предоплаты</p>
             </div>
@@ -454,17 +415,28 @@ export function NewWebsitePage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="nw-cta">
+      {/* Контакты */}
+      <section className="nw-contacts">
         <div className="nw-container">
-          <h2 className="nw-cta-title">НАЧНЁМ СЕГОДНЯ?</h2>
-          <p className="nw-cta-text">
-            Оставьте контакт — я покажу прототипы, обсудим детали, подготовлю индивидуальное предложение
+          <h2 className="nw-section-title">НАЧНЁМ СЕГОДНЯ?</h2>
+          <p className="contacts-text">
+            Обсудим ваш проект. Покажу примеры работ. Подготовлю прототип бесплатно.
           </p>
-          <div className="nw-cta-buttons">
-            <button className="nw-cta-primary">ОБСУДИТЬ ПРОЕКТ</button>
-            <button className="nw-cta-secondary">СКАЧАТЬ ПРЕЗЕНТАЦИЮ (PDF)</button>
+          
+          <div className="contacts-info">
+            <div className="contact-item">
+              <Phone size={24} />
+              <span>+375 (29) 615-56-72</span>
+            </div>
+            <div className="contact-item">
+              <MapPin size={24} />
+              <span>г. Минск, ул. М. Лынькова, 85</span>
+            </div>
           </div>
+          
+          <button className="cta-button">
+            ОБСУДИТЬ РЕДИЗАЙН
+          </button>
         </div>
       </section>
 
@@ -494,9 +466,6 @@ export function NewWebsitePage() {
           color: var(--text-secondary);
           text-align: center;
           margin: 0 0 48px 0;
-          max-width: 700px;
-          margin-left: auto;
-          margin-right: auto;
         }
 
         /* Hero */
@@ -521,10 +490,10 @@ export function NewWebsitePage() {
 
         .nw-title {
           font-family: 'Bebas Neue', sans-serif;
-          font-size: clamp(32px, 5vw, 56px);
-          letter-spacing: 0.08em;
+          font-size: clamp(40px, 6vw, 72px);
+          letter-spacing: 0.1em;
           color: var(--text-primary);
-          margin: 0 0 16px 0;
+          margin: 0 0 8px 0;
         }
 
         .nw-subtitle {
@@ -567,10 +536,6 @@ export function NewWebsitePage() {
           color: var(--accent-green);
         }
 
-        .nw-gift svg {
-          color: var(--accent-green);
-        }
-
         .nw-gift strong {
           display: block;
           font-family: 'Bebas Neue', sans-serif;
@@ -591,44 +556,42 @@ export function NewWebsitePage() {
           margin: 0;
         }
 
-        /* Problems */
-        .nw-problems {
+        /* Audit */
+        .nw-audit {
           padding: 80px 0;
           background: var(--background-primary);
         }
 
-        .nw-problems-grid {
+        .audit-grid {
           display: grid;
-          gap: 24px;
+          gap: 20px;
         }
 
-        .nw-problem-card {
+        .audit-card {
           background: var(--surface);
-          border-radius: 16px;
-          overflow: hidden;
-          box-shadow: 
-            6px 6px 12px var(--shadow-dark),
-            -2px -2px 8px var(--shadow-light);
+          border-radius: 12px;
+          padding: 24px;
           border-left: 4px solid var(--gri-glow);
+          box-shadow: 6px 6px 12px var(--shadow-dark), -2px -2px 8px var(--shadow-light);
         }
 
-        .nw-problem-header {
+        .audit-header {
           display: flex;
           align-items: center;
-          gap: 16px;
-          padding: 20px 24px;
-          background: linear-gradient(135deg, var(--surface) 0%, var(--surface-highlight) 100%);
+          gap: 12px;
+          margin-bottom: 16px;
+          padding-bottom: 12px;
           border-bottom: 1px solid var(--grid-lines);
         }
 
-        .nw-problem-num {
+        .audit-num {
           font-family: 'JetBrains Mono', monospace;
           font-size: 14px;
           color: var(--gri-glow);
           opacity: 0.6;
         }
 
-        .nw-problem-header h3 {
+        .audit-header h3 {
           font-family: 'Bebas Neue', sans-serif;
           font-size: 18px;
           letter-spacing: 0.06em;
@@ -636,175 +599,111 @@ export function NewWebsitePage() {
           margin: 0;
         }
 
-        .nw-problem-content {
-          padding: 24px;
-          display: grid;
-          gap: 16px;
-        }
-
-        .nw-problem-old {
-          padding: 16px;
-          background: rgba(255, 100, 100, 0.1);
+        .audit-block {
+          margin-bottom: 12px;
+          padding: 12px;
           border-radius: 8px;
         }
 
-        .nw-problem-old strong {
+        .audit-block.current {
+          background: rgba(255, 200, 100, 0.1);
+        }
+
+        .audit-block.problem {
+          background: rgba(255, 100, 100, 0.1);
+        }
+
+        .audit-block.solution {
+          background: rgba(74, 222, 128, 0.1);
+        }
+
+        .block-label {
+          display: flex;
+          align-items: center;
+          gap: 6px;
           font-family: 'Bebas Neue', sans-serif;
-          font-size: 12px;
+          font-size: 11px;
           letter-spacing: 0.08em;
+          margin-bottom: 6px;
+        }
+
+        .audit-block.current .block-label {
+          color: #ffc864;
+        }
+
+        .audit-block.problem .block-label {
           color: #ff6464;
         }
 
-        .nw-problem-old p {
-          font-family: 'PT Sans', sans-serif;
-          font-size: 14px;
-          color: var(--text-secondary);
-          margin: 8px 0 0 0;
+        .audit-block.solution .block-label {
+          color: var(--accent-green);
         }
 
-        .nw-problem-research {
-          display: flex;
-          align-items: flex-start;
-          gap: 12px;
-          padding: 16px;
-          background: rgba(255, 154, 77, 0.1);
-          border-radius: 8px;
-        }
-
-        .nw-problem-research svg {
-          color: var(--gri-glow);
-          flex-shrink: 0;
-          margin-top: 2px;
-        }
-
-        .nw-problem-research p {
+        .audit-block p {
           font-family: 'PT Sans', sans-serif;
           font-size: 14px;
           color: var(--text-secondary);
           margin: 0;
-          line-height: 1.6;
+          line-height: 1.5;
         }
 
-        .nw-problem-new {
-          padding: 16px;
-          background: rgba(74, 222, 128, 0.1);
-          border-radius: 8px;
-        }
-
-        .nw-problem-new strong {
-          font-family: 'Bebas Neue', sans-serif;
-          font-size: 12px;
-          letter-spacing: 0.08em;
-          color: var(--accent-green);
-        }
-
-        .nw-problem-new p {
-          font-family: 'PT Sans', sans-serif;
-          font-size: 14px;
-          color: var(--text-secondary);
-          margin: 8px 0 0 0;
-          line-height: 1.6;
-        }
-
-        /* Screens */
-        .nw-screens {
+        /* Structure */
+        .nw-structure {
           padding: 80px 0;
           background: var(--background-secondary);
         }
 
-        .nw-screen-card {
-          background: var(--surface);
-          border-radius: 16px;
-          padding: 32px;
-          margin-bottom: 24px;
-          box-shadow: 
-            6px 6px 12px var(--shadow-dark),
-            -2px -2px 8px var(--shadow-light);
+        .structure-list {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
         }
 
-        .nw-screen-header {
+        .structure-item {
+          background: var(--surface);
+          border-radius: 12px;
+          padding: 24px;
+          box-shadow: 6px 6px 12px var(--shadow-dark), -2px -2px 8px var(--shadow-light);
+        }
+
+        .structure-header {
           display: flex;
           align-items: center;
           gap: 16px;
           margin-bottom: 16px;
         }
 
-        .nw-screen-num {
-          width: 48px;
-          height: 48px;
+        .structure-num {
+          width: 40px;
+          height: 40px;
           display: flex;
           align-items: center;
           justify-content: center;
           background: var(--gri-glow);
           color: var(--background-primary);
           font-family: 'Bebas Neue', sans-serif;
-          font-size: 24px;
-          border-radius: 12px;
+          font-size: 18px;
+          border-radius: 8px;
         }
 
-        .nw-screen-header h3 {
+        .structure-header h3 {
           font-family: 'Bebas Neue', sans-serif;
-          font-size: 20px;
+          font-size: 18px;
           letter-spacing: 0.06em;
           color: var(--text-primary);
           margin: 0;
         }
 
-        .nw-screen-goal {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          padding: 12px 16px;
-          background: rgba(255, 154, 77, 0.1);
-          border-radius: 8px;
-          margin-bottom: 16px;
-          font-family: 'PT Sans', sans-serif;
-          font-size: 14px;
-          color: var(--gri-glow);
-        }
-
-        .nw-screen-research {
-          display: flex;
-          align-items: flex-start;
-          gap: 12px;
-          padding: 16px;
-          background: var(--background-primary);
-          border-radius: 8px;
-          margin-bottom: 16px;
-        }
-
-        .nw-screen-research svg {
-          color: var(--gri-glow);
-          flex-shrink: 0;
-          margin-top: 2px;
-        }
-
-        .nw-screen-research p {
-          font-family: 'PT Sans', sans-serif;
-          font-size: 14px;
-          color: var(--text-secondary);
-          margin: 0;
-          line-height: 1.6;
-        }
-
-        .nw-screen-elements h4 {
-          font-family: 'Bebas Neue', sans-serif;
-          font-size: 14px;
-          letter-spacing: 0.08em;
-          color: var(--text-primary);
-          margin: 0 0 12px 0;
-        }
-
-        .nw-screen-elements ul {
+        .structure-elements {
           list-style: none;
           padding: 0;
           margin: 0 0 16px 0;
-          display: flex;
-          flex-direction: column;
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
           gap: 8px;
         }
 
-        .nw-screen-elements li {
+        .structure-elements li {
           font-family: 'PT Sans', sans-serif;
           font-size: 14px;
           color: var(--text-secondary);
@@ -813,273 +712,93 @@ export function NewWebsitePage() {
           gap: 8px;
         }
 
-        .nw-screen-elements li svg {
+        .structure-elements li svg {
           color: var(--accent-green);
           flex-shrink: 0;
           margin-top: 3px;
         }
 
-        .nw-screen-why {
-          padding: 16px;
+        .structure-result {
+          padding: 12px;
           background: rgba(74, 222, 128, 0.1);
           border-radius: 8px;
-        }
-
-        .nw-screen-why strong {
-          font-family: 'Bebas Neue', sans-serif;
-          font-size: 12px;
-          letter-spacing: 0.08em;
+          font-family: 'PT Sans', sans-serif;
+          font-size: 14px;
           color: var(--accent-green);
         }
 
-        .nw-screen-why p {
-          font-family: 'PT Sans', sans-serif;
-          font-size: 14px;
-          color: var(--text-secondary);
-          margin: 8px 0 0 0;
-          line-height: 1.6;
-        }
-
-        /* Design */
-        .nw-design {
-          padding: 80px 0;
-          background: var(--background-primary);
-        }
-
-        .nw-design-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: 24px;
-        }
-
-        .nw-design-card {
-          background: var(--surface);
-          border-radius: 16px;
-          padding: 32px;
-          box-shadow: 
-            6px 6px 12px var(--shadow-dark),
-            -2px -2px 8px var(--shadow-light);
-        }
-
-        .nw-design-card h3 {
-          font-family: 'Bebas Neue', sans-serif;
-          font-size: 18px;
-          letter-spacing: 0.06em;
-          color: var(--text-primary);
-          margin: 0 0 16px 0;
-          padding-bottom: 16px;
-          border-bottom: 1px solid var(--grid-lines);
-        }
-
-        .nw-design-choice {
-          margin-bottom: 16px;
-        }
-
-        .nw-design-choice strong {
-          font-family: 'Bebas Neue', sans-serif;
-          font-size: 12px;
-          letter-spacing: 0.08em;
-          color: var(--gri-glow);
-        }
-
-        .nw-design-choice p {
-          font-family: 'PT Sans', sans-serif;
-          font-size: 14px;
-          color: var(--text-secondary);
-          margin: 8px 0 0 0;
-          line-height: 1.6;
-        }
-
-        .nw-design-why strong {
-          font-family: 'Bebas Neue', sans-serif;
-          font-size: 12px;
-          letter-spacing: 0.08em;
-          color: var(--accent-green);
-        }
-
-        .nw-design-why p {
-          font-family: 'PT Sans', sans-serif;
-          font-size: 14px;
-          color: var(--text-secondary);
-          margin: 8px 0 0 0;
-          line-height: 1.6;
-        }
-
-        /* Funnel */
-        .nw-funnel {
-          padding: 80px 0;
-          background: var(--background-secondary);
-        }
-
-        .nw-funnel-track {
-          display: flex;
-          flex-direction: column;
-          gap: 16px;
-        }
-
-        .nw-funnel-step {
-          display: flex;
-          align-items: center;
-          gap: 24px;
-          padding: 24px;
-          background: var(--surface);
-          border-radius: 12px;
-          box-shadow: 
-            4px 4px 8px var(--shadow-dark),
-            -1px -1px 4px var(--shadow-light);
-        }
-
-        .nw-funnel-num {
-          width: 48px;
-          height: 48px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: var(--gri-glow);
-          color: var(--background-primary);
-          font-family: 'Bebas Neue', sans-serif;
-          font-size: 20px;
-          border-radius: 50%;
-          flex-shrink: 0;
-        }
-
-        .nw-funnel-content {
-          flex: 1;
-        }
-
-        .nw-funnel-content h4 {
-          font-family: 'Bebas Neue', sans-serif;
-          font-size: 16px;
-          letter-spacing: 0.06em;
-          color: var(--text-primary);
-          margin: 0 0 4px 0;
-        }
-
-        .nw-funnel-content p {
-          font-family: 'PT Sans', sans-serif;
-          font-size: 14px;
-          color: var(--text-secondary);
-          margin: 0 0 8px 0;
-        }
-
-        .nw-funnel-metric {
-          display: inline-block;
-          padding: 4px 12px;
-          background: rgba(74, 222, 128, 0.15);
-          border-radius: 20px;
-          font-family: 'JetBrains Mono', monospace;
-          font-size: 12px;
-          color: var(--accent-green);
-        }
-
-        /* SEO */
-        .nw-seo {
-          padding: 80px 0;
-          background: var(--background-primary);
-        }
-
-        .nw-seo-table {
-          background: var(--surface);
-          border-radius: 16px;
-          overflow: hidden;
-          box-shadow: 
-            6px 6px 12px var(--shadow-dark),
-            -2px -2px 8px var(--shadow-light);
-        }
-
-        .nw-seo-header {
-          display: grid;
-          grid-template-columns: 1.5fr 1.5fr 2fr 1fr;
-          gap: 16px;
-          padding: 20px 24px;
-          background: var(--background-primary);
-          font-family: 'Bebas Neue', sans-serif;
-          font-size: 12px;
-          letter-spacing: 0.08em;
-          color: var(--text-secondary);
-        }
-
-        .nw-seo-row {
-          display: grid;
-          grid-template-columns: 1.5fr 1.5fr 2fr 1fr;
-          gap: 16px;
-          padding: 16px 24px;
-          border-top: 1px solid var(--grid-lines);
-          font-family: 'PT Sans', sans-serif;
-          font-size: 14px;
-          color: var(--text-secondary);
-          align-items: center;
-        }
-
-        .nw-seo-old {
-          color: #ff6464;
-        }
-
-        .nw-seo-new {
-          color: var(--accent-green);
-        }
-
-        .nw-seo-result {
-          color: var(--gri-glow);
+        .structure-result strong {
           font-weight: 700;
         }
 
-        /* Includes */
-        .nw-includes {
+        /* Scope */
+        .nw-scope {
           padding: 80px 0;
-          background: var(--background-secondary);
+          background: var(--background-primary);
         }
 
-        .nw-includes-grid {
+        .scope-timeline {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-          gap: 24px;
+          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+          gap: 20px;
           margin-bottom: 40px;
         }
 
-        .nw-include-card {
+        .phase-card {
           background: var(--surface);
-          border-radius: 16px;
-          padding: 32px;
-          text-align: center;
-          box-shadow: 
-            6px 6px 12px var(--shadow-dark),
-            -2px -2px 8px var(--shadow-light);
+          border-radius: 12px;
+          padding: 24px;
+          box-shadow: 6px 6px 12px var(--shadow-dark), -2px -2px 8px var(--shadow-light);
         }
 
-        .nw-include-card svg {
-          color: var(--gri-glow);
+        .phase-header {
+          display: flex;
+          align-items: center;
+          gap: 12px;
           margin-bottom: 16px;
-        }
-
-        .nw-include-card h3 {
-          font-family: 'Bebas Neue', sans-serif;
-          font-size: 16px;
-          letter-spacing: 0.08em;
-          color: var(--text-primary);
-          margin: 0 0 16px 0;
-        }
-
-        .nw-include-card ul {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-          text-align: left;
-        }
-
-        .nw-include-card li {
-          font-family: 'PT Sans', sans-serif;
-          font-size: 14px;
-          color: var(--text-secondary);
-          padding: 8px 0;
+          padding-bottom: 12px;
           border-bottom: 1px solid var(--grid-lines);
         }
 
-        .nw-include-card li:last-child {
-          border-bottom: none;
+        .phase-num {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 14px;
+          color: var(--gri-glow);
         }
 
-        .nw-gift-banner {
+        .phase-header h3 {
+          font-family: 'Bebas Neue', sans-serif;
+          font-size: 16px;
+          letter-spacing: 0.06em;
+          color: var(--text-primary);
+          margin: 0;
+        }
+
+        .phase-card ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .phase-card li {
+          font-family: 'PT Sans', sans-serif;
+          font-size: 14px;
+          color: var(--text-secondary);
+          display: flex;
+          align-items: flex-start;
+          gap: 8px;
+        }
+
+        .phase-card li svg {
+          color: var(--accent-green);
+          flex-shrink: 0;
+          margin-top: 3px;
+        }
+
+        .gift-banner {
           display: flex;
           align-items: center;
           gap: 24px;
@@ -1089,12 +808,12 @@ export function NewWebsitePage() {
           border-radius: 16px;
         }
 
-        .nw-gift-banner svg {
+        .gift-banner svg {
           color: var(--accent-green);
           flex-shrink: 0;
         }
 
-        .nw-gift-banner h3 {
+        .gift-banner h3 {
           font-family: 'Bebas Neue', sans-serif;
           font-size: 20px;
           letter-spacing: 0.08em;
@@ -1102,11 +821,56 @@ export function NewWebsitePage() {
           margin: 0 0 8px 0;
         }
 
-        .nw-gift-banner p {
+        .gift-banner p {
           font-family: 'PT Sans', sans-serif;
           font-size: 14px;
           color: var(--text-secondary);
           margin: 0;
+        }
+
+        /* Comparison */
+        .nw-comparison {
+          padding: 80px 0;
+          background: var(--background-secondary);
+        }
+
+        .comparison-table {
+          background: var(--surface);
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 6px 6px 12px var(--shadow-dark), -2px -2px 8px var(--shadow-light);
+        }
+
+        .comp-header {
+          display: grid;
+          grid-template-columns: 1.5fr 2fr 2fr;
+          gap: 16px;
+          padding: 16px 24px;
+          background: var(--background-primary);
+          font-family: 'Bebas Neue', sans-serif;
+          font-size: 12px;
+          letter-spacing: 0.08em;
+          color: var(--text-secondary);
+        }
+
+        .comp-row {
+          display: grid;
+          grid-template-columns: 1.5fr 2fr 2fr;
+          gap: 16px;
+          padding: 16px 24px;
+          border-top: 1px solid var(--grid-lines);
+          font-family: 'PT Sans', sans-serif;
+          font-size: 14px;
+          color: var(--text-secondary);
+          align-items: center;
+        }
+
+        .comp-old {
+          color: #ff6464;
+        }
+
+        .comp-new {
+          color: var(--accent-green);
         }
 
         /* Pricing */
@@ -1115,32 +879,30 @@ export function NewWebsitePage() {
           background: var(--background-primary);
         }
 
-        .nw-pricing-cards {
+        .pricing-cards {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
           gap: 32px;
           margin-bottom: 32px;
         }
 
-        .nw-pricing-market {
+        .price-market {
           padding: 40px;
           background: var(--surface);
           border-radius: 16px;
-          box-shadow: 
-            6px 6px 12px var(--shadow-dark),
-            -2px -2px 8px var(--shadow-light);
+          box-shadow: 6px 6px 12px var(--shadow-dark), -2px -2px 8px var(--shadow-light);
         }
 
-        .nw-pricing-market h3 {
+        .price-market h3 {
           font-family: 'Bebas Neue', sans-serif;
           font-size: 18px;
           letter-spacing: 0.08em;
           color: var(--text-primary);
-          margin: 0 0 16px 0;
           text-align: center;
+          margin: 0 0 16px 0;
         }
 
-        .nw-price-range {
+        .price-range {
           font-family: 'JetBrains Mono', monospace;
           font-size: 28px;
           color: var(--text-secondary);
@@ -1148,13 +910,13 @@ export function NewWebsitePage() {
           margin-bottom: 24px;
         }
 
-        .nw-pricing-market ul {
+        .price-market ul {
           list-style: none;
           padding: 0;
           margin: 0;
         }
 
-        .nw-pricing-market li {
+        .price-market li {
           font-family: 'PT Sans', sans-serif;
           font-size: 14px;
           color: var(--text-secondary);
@@ -1162,20 +924,17 @@ export function NewWebsitePage() {
           border-bottom: 1px solid var(--grid-lines);
         }
 
-        .nw-pricing-our {
+        .price-our {
           position: relative;
           padding: 40px;
           background: linear-gradient(135deg, var(--surface) 0%, var(--surface-highlight) 100%);
           border: 2px solid var(--gri-glow);
           border-radius: 16px;
           text-align: center;
-          box-shadow: 
-            6px 6px 12px var(--shadow-dark),
-            -2px -2px 8px var(--shadow-light),
-            0 0 40px rgba(255, 154, 77, 0.2);
+          box-shadow: 6px 6px 12px var(--shadow-dark), -2px -2px 8px var(--shadow-light), 0 0 40px rgba(255, 154, 77, 0.2);
         }
 
-        .nw-pricing-badge {
+        .price-badge {
           position: absolute;
           top: -12px;
           left: 50%;
@@ -1189,20 +948,20 @@ export function NewWebsitePage() {
           border-radius: 20px;
         }
 
-        .nw-price-main {
+        .price-main {
           display: flex;
           justify-content: center;
           margin: 24px 0;
         }
 
-        .nw-pricing-note {
+        .price-note {
           font-family: 'PT Sans', sans-serif;
           font-size: 14px;
           color: var(--text-secondary);
           margin-bottom: 16px;
         }
 
-        .nw-pricing-gift {
+        .price-gift {
           display: flex;
           align-items: center;
           justify-content: center;
@@ -1215,7 +974,7 @@ export function NewWebsitePage() {
           color: var(--accent-green);
         }
 
-        .nw-economy {
+        .economy {
           text-align: center;
           font-family: 'Bebas Neue', sans-serif;
           font-size: 24px;
@@ -1223,7 +982,7 @@ export function NewWebsitePage() {
           color: var(--text-primary);
         }
 
-        .nw-economy strong {
+        .economy strong {
           color: var(--accent-green);
           font-size: 32px;
         }
@@ -1234,28 +993,26 @@ export function NewWebsitePage() {
           background: var(--background-secondary);
         }
 
-        .nw-guarantees-grid {
+        .guarantees-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
           gap: 24px;
         }
 
-        .nw-guarantee-card {
+        .guarantee-card {
           background: var(--surface);
           border-radius: 16px;
           padding: 32px;
           text-align: center;
-          box-shadow: 
-            6px 6px 12px var(--shadow-dark),
-            -2px -2px 8px var(--shadow-light);
+          box-shadow: 6px 6px 12px var(--shadow-dark), -2px -2px 8px var(--shadow-light);
         }
 
-        .nw-guarantee-card svg {
+        .guarantee-card svg {
           color: var(--gri-glow);
           margin-bottom: 16px;
         }
 
-        .nw-guarantee-card h3 {
+        .guarantee-card h3 {
           font-family: 'Bebas Neue', sans-serif;
           font-size: 16px;
           letter-spacing: 0.08em;
@@ -1263,130 +1020,83 @@ export function NewWebsitePage() {
           margin: 0 0 12px 0;
         }
 
-        .nw-guarantee-card p {
+        .guarantee-card p {
           font-family: 'PT Sans', sans-serif;
           font-size: 14px;
           color: var(--text-secondary);
           margin: 0;
         }
 
-        /* CTA */
-        .nw-cta {
+        /* Contacts */
+        .nw-contacts {
           padding: 80px 0 120px;
           background: linear-gradient(135deg, var(--background-secondary) 0%, var(--background-primary) 100%);
           text-align: center;
         }
 
-        .nw-cta-title {
-          font-family: 'Bebas Neue', sans-serif;
-          font-size: clamp(32px, 4vw, 48px);
-          letter-spacing: 0.08em;
-          color: var(--text-primary);
-          margin: 0 0 24px 0;
-        }
-
-        .nw-cta-text {
+        .contacts-text {
           font-family: 'PT Sans', sans-serif;
           font-size: 18px;
           color: var(--text-secondary);
-          max-width: 600px;
+          max-width: 500px;
           margin: 0 auto 32px auto;
         }
 
-        .nw-cta-buttons {
+        .contacts-info {
           display: flex;
           justify-content: center;
-          gap: 16px;
+          gap: 40px;
           flex-wrap: wrap;
+          margin-bottom: 32px;
         }
 
-        .nw-cta-primary {
+        .contact-item {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          font-family: 'PT Sans', sans-serif;
+          font-size: 16px;
+          color: var(--text-primary);
+        }
+
+        .contact-item svg {
+          color: var(--gri-glow);
+        }
+
+        .cta-button {
           padding: 20px 48px;
           background: var(--gri-glow);
           border: none;
           border-radius: 12px;
           color: var(--background-primary);
           font-family: 'Bebas Neue', sans-serif;
-          font-size: 16px;
+          font-size: 18px;
           letter-spacing: 0.1em;
           cursor: pointer;
-          box-shadow: 
-            0 8px 24px rgba(255, 154, 77, 0.4),
-            0 0 40px rgba(255, 154, 77, 0.3);
+          box-shadow: 0 8px 24px rgba(255, 154, 77, 0.4), 0 0 40px rgba(255, 154, 77, 0.3);
           transition: all 0.3s;
         }
 
-        .nw-cta-primary:hover {
+        .cta-button:hover {
           transform: translateY(-3px);
-          box-shadow: 
-            0 12px 32px rgba(255, 154, 77, 0.5),
-            0 0 60px rgba(255, 154, 77, 0.4);
-        }
-
-        .nw-cta-secondary {
-          padding: 20px 48px;
-          background: transparent;
-          border: 2px solid var(--grid-lines);
-          border-radius: 12px;
-          color: var(--text-primary);
-          font-family: 'Bebas Neue', sans-serif;
-          font-size: 16px;
-          letter-spacing: 0.1em;
-          cursor: pointer;
-          transition: all 0.3s;
-        }
-
-        .nw-cta-secondary:hover {
-          border-color: var(--gri-glow);
-          color: var(--gri-glow);
-        }
-
-        @media (max-width: 968px) {
-          .nw-seo-header,
-          .nw-seo-row {
-            grid-template-columns: 1fr;
-            gap: 8px;
-          }
+          box-shadow: 0 12px 32px rgba(255, 154, 77, 0.5), 0 0 60px rgba(255, 154, 77, 0.4);
         }
 
         @media (max-width: 768px) {
-          .nw-container {
-            padding: 0 16px;
+          .comp-header,
+          .comp-row {
+            grid-template-columns: 1fr;
+            gap: 8px;
           }
 
-          .nw-hero-stats {
+          .contacts-info {
             flex-direction: column;
-            gap: 24px;
+            gap: 16px;
           }
 
-          .nw-gift {
-            flex-direction: column;
-            text-align: center;
-          }
-
-          .nw-screen-card {
-            padding: 20px;
-          }
-
-          .nw-funnel-step {
+          .gift-banner {
             flex-direction: column;
             text-align: center;
-          }
-
-          .nw-gift-banner {
-            flex-direction: column;
-            text-align: center;
-          }
-
-          .nw-cta-buttons {
-            flex-direction: column;
-            align-items: center;
-          }
-
-          .nw-cta-primary,
-          .nw-cta-secondary {
-            width: 100%;
-            max-width: 300px;
           }
         }
       `}</style>
