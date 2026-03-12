@@ -10,8 +10,6 @@ import { ContactSection } from "./components/contact-section";
 import { ProductsOfferSection } from "./components/products-offer-section";
 import { DigitalTransformationPage } from "./pages/digital-transformation-page";
 import { NewWebsitePage } from "./pages/new-website-page";
-import { SovietConstructivismPage } from "./pages/soviet-constructivism-page";
-import { IndustrialGigantismPage } from "./pages/industrial-gigantism-page";
 import { Footer } from "./components/footer";
 import { TelegramWidget } from "./components/telegram-widget";
 import { InfoPopup } from "./components/info-popup";
@@ -22,7 +20,7 @@ import { PaymentPage } from "./pages/payment-page";
 import { ContactsPage } from "./pages/contacts-page";
 import { ProductCategoryPage } from "./pages/product-category-page";
 
-type Page = "home" | "about" | "catalog" | "delivery" | "payment" | "contacts" | "product" | "digital" | "newwebsite" | "soviet" | "gigantism";
+type Page = "home" | "about" | "catalog" | "delivery" | "payment" | "contacts" | "product" | "digital" | "newwebsite";
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>("home");
@@ -56,10 +54,6 @@ export default function App() {
         return <DigitalTransformationPage />;
       case "newwebsite":
         return <NewWebsitePage />;
-      case "soviet":
-        return <SovietConstructivismPage />;
-      case "gigantism":
-        return <IndustrialGigantismPage />;
       case "product":
         return <ProductCategoryPage categoryId={selectedCategory} onBack={() => navigateTo("catalog")} />;
       default:

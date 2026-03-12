@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Phone, Info, Menu, X } from "lucide-react";
 
-type Page = "home" | "about" | "catalog" | "delivery" | "payment" | "contacts" | "digital" | "newwebsite" | "soviet" | "gigantism";
+type Page = "home" | "about" | "catalog" | "delivery" | "payment" | "contacts" | "digital" | "newwebsite";
 
 interface HeaderProps {
   currentPage: Page;
@@ -14,8 +14,6 @@ const navItems: { id: Page; label: string }[] = [
   { id: "about", label: "О КОМПАНИИ" },
   { id: "catalog", label: "КАТАЛОГ" },
   { id: "newwebsite", label: "НОВЫЙ САЙТ" },
-  { id: "soviet", label: "КОНСТРУКТИВИЗМ" },
-  { id: "gigantism", label: "ИНДУСТРИЯ" },
   { id: "delivery", label: "ДОСТАВКА" },
   { id: "payment", label: "ОПЛАТА" },
   { id: "contacts", label: "КОНТАКТЫ" },
