@@ -4,10 +4,11 @@ import { HeroSection } from "./components/hero-section";
 import { ProductsSection } from "./components/products-section";
 import { AdvantagesSection } from "./components/advantages-section";
 import { LogosSection } from "./components/logos-section";
-import { LogoVariantsSection } from "./components/logo-variants-section";
 import { PresentationSection } from "./components/presentation-section";
 import { SolutionsSection } from "./components/solutions-section";
 import { ContactSection } from "./components/contact-section";
+import { ProductsOfferSection } from "./components/products-offer-section";
+import { DigitalTransformationPage } from "./pages/digital-transformation-page";
 import { Footer } from "./components/footer";
 import { TelegramWidget } from "./components/telegram-widget";
 import { InfoPopup } from "./components/info-popup";
@@ -18,7 +19,7 @@ import { PaymentPage } from "./pages/payment-page";
 import { ContactsPage } from "./pages/contacts-page";
 import { ProductCategoryPage } from "./pages/product-category-page";
 
-type Page = "home" | "about" | "catalog" | "delivery" | "payment" | "contacts" | "product";
+type Page = "home" | "about" | "catalog" | "delivery" | "payment" | "contacts" | "product" | "digital";
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>("home");
@@ -48,6 +49,8 @@ export default function App() {
         return <PaymentPage />;
       case "contacts":
         return <ContactsPage />;
+      case "digital":
+        return <DigitalTransformationPage />;
       case "product":
         return <ProductCategoryPage categoryId={selectedCategory} onBack={() => navigateTo("catalog")} />;
       default:
@@ -57,10 +60,10 @@ export default function App() {
             <ProductsSection onSelectCategory={(cat) => { setSelectedCategory(cat); navigateTo("product"); }} />
             <AdvantagesSection />
             <LogosSection />
-            <LogoVariantsSection />
-            <PresentationSection />
             <SolutionsSection />
             <ContactSection />
+            <ProductsOfferSection />
+            <PresentationSection />
           </>
         );
     }

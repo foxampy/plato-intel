@@ -99,22 +99,14 @@ export function PresentationSection() {
         {/* Почему такой дизайн */}
         <div className="pres-block design-block">
           <h3 className="block-subtitle">КОНЦЕПЦИЯ: ТЁПЛЫЙ ИНДУСТРИАЛЬНЫЙ НЕОМОРФИЗМ</h3>
-          <div className="design-grid">
-            <div className="design-card">
-              <div className="design-icon nixie-style">ГРИ</div>
-              <h4>Газоразрядные индикаторы</h4>
-              <p>Измерительные приборы 70-х, которые работают до сих пор. Вызывают ностальгию и ассоциируются с надёжностью.</p>
-            </div>
-            <div className="design-card">
-              <div className="design-icon nixie-style">НЕО</div>
-              <h4>Неоморфизм</h4>
-              <p>Современная тактильность, выпуклые панели, мягкие тени. Понятно инженерам 40-50 лет.</p>
-            </div>
-            <div className="design-card">
-              <div className="design-icon nixie-style">КОН</div>
-              <h4>Конструктивизм</h4>
-              <p>Геометрия, массивная типографика, промышленная эстетика. Структура и предсказуемость.</p>
-            </div>
+          <div className="design-single">
+            <p>
+              Современный тактильный дизайн, понятный инженерам 40-50 лет, с узнаваемыми элементами 
+              советской инженерии. <strong>Газоразрядные индикаторы (ГРИ)</strong> вызывают ностальгию 
+              без слабости, ассоциируются с надёжностью. <strong>Неоморфизм</strong> даёт тактильность 
+              и выпуклые панели. <strong>Конструктивизм</strong> обеспечивает структуру, геометрию 
+              и промышленную эстетику.
+            </p>
           </div>
         </div>
 
@@ -244,20 +236,11 @@ export function PresentationSection() {
               </div>
               <p>Покрывает дизайн-концепцию, прототипирование и старт работ</p>
             </div>
-
-            <div className="detail-card">
-              <h4>ПОДДЕРЖКА</h4>
-              <div className="nixie-inline">
-                <NixieTubeAdvanced value="400" label="BYN/МЕС" size="small" delay={600} />
-              </div>
-              <p>SEO, обновления, доработки. Не 1,200-1,500 как у агентств</p>
-            </div>
           </div>
         </div>
 
         {/* CTA */}
         <div className="pres-block cta-block">
-          <h2 className="cta-title">ДАВАЙТЕ НАЧНЁМ</h2>
           <p className="cta-text">
             Оставьте контакт — мы покажем прототип, обсудим детали, подготовим индивидуальное предложение
           </p>
@@ -325,60 +308,27 @@ export function PresentationSection() {
           font-weight: 700;
         }
 
-        .design-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-          gap: 32px;
-        }
-
-        .design-card {
-          padding: 32px;
+        .design-single {
+          max-width: 800px;
+          margin: 0 auto;
+          padding: 40px;
           background: var(--surface);
           border-radius: 16px;
-          text-align: center;
           box-shadow: 
             6px 6px 12px var(--shadow-dark),
             -2px -2px 8px var(--shadow-light);
         }
 
-        .design-card h4 {
-          font-family: 'Bebas Neue', sans-serif;
-          font-size: 16px;
-          letter-spacing: 0.08em;
-          color: var(--text-primary);
-          margin: 16px 0 12px 0;
-          text-transform: uppercase;
-        }
-
-        .design-icon {
-          width: 80px;
-          height: 80px;
-          margin: 0 auto;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-family: 'Nixie One', cursive;
-          font-size: 28px;
-          color: #ffd7a8;
-          background: var(--background-primary);
-          border-radius: 12px;
-          box-shadow: inset 4px 4px 8px rgba(0,0,0,0.4);
-        }
-
-        .design-icon.nixie-style {
-          text-shadow: 
-            0 0 5px #ffaa00,
-            0 0 10px #ff8800,
-            0 0 15px #ff6600;
-          animation: nixie-pulse 3s infinite;
-        }
-
-        .design-card p {
+        .design-single p {
           font-family: 'PT Sans', sans-serif;
-          font-size: 14px;
-          line-height: 1.6;
+          font-size: 16px;
+          line-height: 1.8;
           color: var(--text-secondary);
           margin: 0;
+        }
+
+        .design-single strong {
+          color: var(--gri-glow);
         }
 
         .features-grid {
@@ -833,14 +783,7 @@ export function PresentationSection() {
             -3px -3px 12px var(--shadow-light);
         }
 
-        .cta-title {
-          font-family: 'Bebas Neue', sans-serif;
-          font-size: clamp(32px, 4vw, 48px);
-          letter-spacing: 0.08em;
-          color: var(--text-primary);
-          margin: 0 0 24px 0;
-          text-transform: uppercase;
-        }
+        /* CTA Title removed */
 
         .cta-text {
           font-family: 'PT Sans', sans-serif;
@@ -905,29 +848,13 @@ export function PresentationSection() {
             line-height: 1.6;
           }
           
-          .design-grid {
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
+          .design-single {
+            padding: 24px;
           }
           
-          .design-card {
-            padding: 16px 12px;
-          }
-          
-          .design-card h4 {
-            font-size: 11px;
-            margin: 8px 0 6px;
-          }
-          
-          .design-card p {
-            font-size: 10px;
-            line-height: 1.3;
-          }
-          
-          .design-icon {
-            width: 48px;
-            height: 48px;
-            font-size: 16px;
+          .design-single p {
+            font-size: 14px;
+            line-height: 1.6;
           }
 
           .features-grid {
@@ -1065,10 +992,7 @@ export function PresentationSection() {
             border-radius: 16px;
           }
           
-          .cta-title {
-            font-size: 24px;
-            margin-bottom: 12px;
-          }
+          /* CTA title removed */
           
           .cta-text {
             font-size: 13px;
@@ -1082,13 +1006,12 @@ export function PresentationSection() {
         }
         
         @media (max-width: 480px) {
-          .design-grid {
-            grid-template-columns: 1fr;
-            gap: 8px;
+          .design-single {
+            padding: 20px;
           }
           
-          .design-card {
-            padding: 12px;
+          .design-single p {
+            font-size: 13px;
           }
           
           .features-grid {

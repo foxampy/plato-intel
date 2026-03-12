@@ -1,46 +1,84 @@
+import { useEffect, useRef } from "react";
+
+const manufacturers = [
+  { name: "ABB", featured: true },
+  { name: "SCHNEIDER", featured: true },
+  { name: "SIEMENS", featured: true },
+  { name: "LEGRAND", featured: false },
+  { name: "EATON", featured: true },
+  { name: "CHINT", featured: false },
+  { name: "IEK", featured: false },
+  { name: "TDM", featured: false },
+  { name: "EKF", featured: true },
+  { name: "КЭАЗ", featured: false },
+  { name: "КОНТАКТОР", featured: false },
+  { name: "ЭТАЛ", featured: false }
+];
+
 export function LogosSection() {
-  // Логотипы производителей в виде текста (можно заменить на реальные изображения)
-  const logos = [
-    { name: "ABB", glow: true },
-    { name: "SCHNEIDER", glow: true },
-    { name: "SIEMENS", glow: true },
-    { name: "LEGRAND", glow: false },
-    { name: "EATON", glow: true },
-    { name: "CHINT", glow: false },
-    { name: "IEK", glow: false },
-    { name: "TDM", glow: false },
-    { name: "EKF", glow: true },
-    { name: "КЭАЗ", glow: false },
-    { name: "КОНТАКТОР", glow: false },
-    { name: "ЭТАЛ", glow: false }
-  ];
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    let animationId: number;
+    let scrollPos = 0;
+    const scrollSpeed = 0.5;
+
+    const animate = () => {
+      scrollPos += scrollSpeed;
+      if (scrollPos >= scrollContainer.scrollWidth / 2) {
+        scrollPos = 0;
+      }
+      scrollContainer.scrollLeft = scrollPos;
+      animationId = requestAnimationFrame(animate);
+    };
+
+    animationId = requestAnimationFrame(animate);
+
+    const handleMouseEnter = () => cancelAnimationFrame(animationId);
+    const handleMouseLeave = () => {
+      animationId = requestAnimationFrame(animate);
+    };
+
+    scrollContainer.addEventListener('mouseenter', handleMouseEnter);
+    scrollContainer.addEventListener('mouseleave', handleMouseLeave);
+
+    return () => {
+      cancelAnimationFrame(animationId);
+      scrollContainer.removeEventListener('mouseenter', handleMouseEnter);
+      scrollContainer.removeEventListener('mouseleave', handleMouseLeave);
+    };
+  }, []);
+
+  // Дублируем массив для бесконечной прокрутки
+  const allManufacturers = [...manufacturers, ...manufacturers];
 
   return (
     <section className="logos-section">
       <div className="section-container">
         <h2 className="section-title">ПРОИЗВОДИТЕЛИ С КОТОРЫМИ МЫ РАБОТАЕМ</h2>
         
-        <div className="logos-grid">
-          {logos.map((logo, idx) => (
-            <div 
-              key={idx} 
-              className={`logo-card ${logo.glow ? 'featured' : ''}`}
-              style={{ animationDelay: `${idx * 0.1}s` }}
-            >
-              <div className="logo-display">
-                <div className={`logo-text ${logo.glow ? 'nixie-glow' : ''}`}>
-                  {logo.name}
-                </div>
-                {logo.glow && <div className="logo-backlight"></div>}
+        <div className="logos-carousel-container">
+          <div className="logos-carousel" ref={scrollRef}>
+            {allManufacturers.map((manufacturer, idx) => (
+              <div 
+                key={idx} 
+                className={`manufacturer-card ${manufacturer.featured ? 'featured' : ''}`}
+              >
+                <span className={`manufacturer-name ${manufacturer.featured ? 'nixie-glow' : ''}`}>
+                  {manufacturer.name}
+                </span>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
 
       <style>{`
         .logos-section {
-          padding: 120px 5%;
+          padding: 60px 0;
           background: var(--background-primary);
           position: relative;
           overflow: hidden;
@@ -62,148 +100,146 @@ export function LogosSection() {
           position: relative;
           max-width: 1400px;
           margin: 0 auto;
+          padding: 0 5%;
         }
 
         .section-title {
           font-family: 'Bebas Neue', sans-serif;
-          font-size: clamp(32px, 4vw, 48px);
+          font-size: clamp(24px, 3vw, 32px);
           letter-spacing: 0.08em;
           color: var(--text-primary);
           text-align: center;
-          margin: 0 0 64px 0;
+          margin: 0 0 32px 0;
           text-transform: uppercase;
         }
 
-        .logos-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-          gap: 32px;
-          align-items: center;
+        .logos-carousel-container {
+          position: relative;
+          overflow: hidden;
         }
 
-        .logo-card {
-          position: relative;
-          padding: 32px 24px;
+        .logos-carousel-container::before,
+        .logos-carousel-container::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          width: 80px;
+          z-index: 2;
+          pointer-events: none;
+        }
+
+        .logos-carousel-container::before {
+          left: 0;
+          background: linear-gradient(to right, var(--background-primary), transparent);
+        }
+
+        .logos-carousel-container::after {
+          right: 0;
+          background: linear-gradient(to left, var(--background-primary), transparent);
+        }
+
+        .logos-carousel {
+          display: flex;
+          gap: 16px;
+          overflow-x: auto;
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+          padding: 8px 0;
+        }
+
+        .logos-carousel::-webkit-scrollbar {
+          display: none;
+        }
+
+        .manufacturer-card {
+          flex-shrink: 0;
+          padding: 16px 24px;
           background: var(--surface);
-          border-radius: 12px;
+          border-radius: 8px;
           display: flex;
           align-items: center;
           justify-content: center;
-          min-height: 120px;
+          min-width: 120px;
           box-shadow: 
-            6px 6px 12px var(--shadow-dark),
-            -2px -2px 8px var(--shadow-light);
+            4px 4px 8px var(--shadow-dark),
+            -1px -1px 4px var(--shadow-light);
           cursor: pointer;
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          overflow: hidden;
-          opacity: 0;
-          transform: translateY(20px);
-          animation: logo-appear 0.6s ease-out forwards;
+          border: 1px solid transparent;
         }
 
-        .logo-card:hover {
-          transform: translateY(-4px);
+        .manufacturer-card:hover {
+          transform: translateY(-2px);
           box-shadow: 
-            8px 8px 16px var(--shadow-dark),
-            -3px -3px 12px var(--shadow-light);
+            6px 6px 12px var(--shadow-dark),
+            -2px -2px 6px var(--shadow-light);
+          border-color: rgba(255, 154, 77, 0.3);
         }
 
-        .logo-card.featured {
-          border: 1px solid rgba(255, 154, 77, 0.2);
+        .manufacturer-card.featured {
+          border: 1px solid rgba(255, 154, 77, 0.3);
+          background: linear-gradient(135deg, var(--surface) 0%, var(--surface-highlight) 100%);
         }
 
-        .logo-card.featured:hover {
-          border-color: rgba(255, 154, 77, 0.5);
+        .manufacturer-card.featured:hover {
+          border-color: rgba(255, 154, 77, 0.6);
           box-shadow: 
-            8px 8px 16px var(--shadow-dark),
-            -3px -3px 12px var(--shadow-light),
-            0 0 30px rgba(255, 154, 77, 0.2);
+            6px 6px 12px var(--shadow-dark),
+            -2px -2px 6px var(--shadow-light),
+            0 0 20px rgba(255, 154, 77, 0.2);
         }
 
-        .logo-display {
-          position: relative;
-          width: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .logo-text {
+        .manufacturer-name {
           font-family: 'Bebas Neue', sans-serif;
-          font-size: 24px;
+          font-size: 14px;
           letter-spacing: 0.12em;
           color: var(--text-primary);
           text-align: center;
-          position: relative;
-          z-index: 2;
-          transition: all 0.3s;
+          white-space: nowrap;
         }
 
-        .logo-text.nixie-glow {
+        .manufacturer-name.nixie-glow {
           font-family: 'Nixie One', cursive;
           color: #ffd7a8;
           text-shadow: 
             0 0 5px #ffaa00,
-            0 0 10px #ff8800,
-            0 0 15px #ff6600;
+            0 0 10px #ff8800;
         }
 
-        .logo-card:hover .logo-text.nixie-glow {
+        .manufacturer-card:hover .manufacturer-name.nixie-glow {
           text-shadow: 
             0 0 8px #ffaa00,
             0 0 15px #ff8800,
-            0 0 25px #ff6600,
-            0 0 35px #ff4400;
-        }
-
-        .logo-backlight {
-          position: absolute;
-          inset: -20px;
-          background: radial-gradient(
-            circle at center,
-            rgba(255, 154, 77, 0.15) 0%,
-            transparent 70%
-          );
-          opacity: 0;
-          transition: opacity 0.3s;
-          pointer-events: none;
-        }
-
-        .logo-card.featured:hover .logo-backlight {
-          opacity: 1;
-          animation: backlight-pulse 2s infinite;
-        }
-
-        @keyframes logo-appear {
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes backlight-pulse {
-          0%, 100% { opacity: 0.8; }
-          50% { opacity: 1; }
+            0 0 20px #ff6600;
         }
 
         @media (max-width: 768px) {
           .logos-section {
-            padding: 80px 20px;
+            padding: 40px 0;
           }
 
-          .logos-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+          .section-container {
+            padding: 0 16px;
           }
 
-          .logo-text {
+          .section-title {
             font-size: 18px;
+            margin-bottom: 24px;
           }
-        }
 
-        @media (max-width: 480px) {
-          .logos-grid {
-            grid-template-columns: 1fr;
+          .manufacturer-card {
+            padding: 12px 16px;
+            min-width: 100px;
+          }
+
+          .manufacturer-name {
+            font-size: 12px;
+          }
+
+          .logos-carousel-container::before,
+          .logos-carousel-container::after {
+            width: 40px;
           }
         }
       `}</style>

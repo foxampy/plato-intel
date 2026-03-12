@@ -1,6 +1,7 @@
-import { Phone, Info } from "lucide-react";
+import { useState } from "react";
+import { Phone, Info, Menu, X } from "lucide-react";
 
-type Page = "home" | "about" | "catalog" | "delivery" | "payment" | "contacts";
+type Page = "home" | "about" | "catalog" | "delivery" | "payment" | "contacts" | "digital";
 
 interface HeaderProps {
   currentPage: Page;
@@ -8,12 +9,29 @@ interface HeaderProps {
   onOpenInfo: (title: string, description: string) => void;
 }
 
+const navItems: { id: Page; label: string }[] = [
+  { id: "home", label: "ГЛАВНАЯ" },
+  { id: "about", label: "О КОМПАНИИ" },
+  { id: "catalog", label: "КАТАЛОГ" },
+  { id: "digital", label: "ЦИФРОВАЯ ТРАНСФОРМАЦИЯ" },
+  { id: "delivery", label: "ДОСТАВКА" },
+  { id: "payment", label: "ОПЛАТА" },
+  { id: "contacts", label: "КОНТАКТЫ" },
+];
+
 export function Header({ currentPage, onNavigate, onOpenInfo }: HeaderProps) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleNavigate = (page: Page) => {
+    onNavigate(page);
+    setMobileMenuOpen(false);
+  };
+
   return (
     <header className="site-header">
       <div className="header-container">
         <div className="logo-module">
-          <div className="logo" onClick={() => onNavigate("home")} style={{ cursor: "pointer" }}>
+          <div className="logo" onClick={() => handleNavigate("home")} style={{ cursor: "pointer" }}>
             <div className="logo-lamp">
               <svg viewBox="0 0 70 90" className="lamp-svg">
                 <defs>
@@ -37,11 +55,10 @@ export function Header({ currentPage, onNavigate, onOpenInfo }: HeaderProps) {
                     <stop offset="50%" stopColor="#ffffff" stopOpacity="0.1" />
                     <stop offset="100%" stopColor="#ffffff" stopOpacity="0.2" />
                   </linearGradient>
-                  {/* Фильтр свечения */}
+                  {/* Фильтр свечения - уменьшен */}
                   <filter id="glowFilter" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="3" result="blur" />
+                    <feGaussianBlur stdDeviation="2" result="blur" />
                     <feMerge>
-                      <feMergeNode in="blur" />
                       <feMergeNode in="blur" />
                       <feMergeNode in="SourceGraphic" />
                     </feMerge>
@@ -103,8 +120,8 @@ export function Header({ currentPage, onNavigate, onOpenInfo }: HeaderProps) {
                 </g>
                 
                 {/* Эффект пульсации пламени - внешнее свечение */}
-                <ellipse cx="35" cy="38" rx="18" ry="22" fill="none" stroke="#ffaa00" strokeWidth="0.5" opacity="0.4">
-                  <animate attributeName="opacity" values="0.4;0.6;0.4" dur="2s" repeatCount="indefinite" />
+                <ellipse cx="35" cy="38" rx="18" ry="22" fill="none" stroke="#ffaa00" strokeWidth="0.5" opacity="0.3">
+                  <animate attributeName="opacity" values="0.3;0.4;0.3" dur="2s" repeatCount="indefinite" />
                   <animate attributeName="rx" values="18;19;18" dur="2s" repeatCount="indefinite" />
                 </ellipse>
                 
@@ -125,43 +142,17 @@ export function Header({ currentPage, onNavigate, onOpenInfo }: HeaderProps) {
           </div>
         </div>
 
+        {/* Desktop Navigation */}
         <nav className="main-nav">
-          <button 
-            className={`nav-link ${currentPage === "home" ? "active" : ""}`}
-            onClick={() => onNavigate("home")}
-          >
-            ГЛАВНАЯ
-          </button>
-          <button 
-            className={`nav-link ${currentPage === "about" ? "active" : ""}`}
-            onClick={() => onNavigate("about")}
-          >
-            О КОМПАНИИ
-          </button>
-          <button 
-            className={`nav-link ${currentPage === "catalog" ? "active" : ""}`}
-            onClick={() => onNavigate("catalog")}
-          >
-            КАТАЛОГ
-          </button>
-          <button 
-            className={`nav-link ${currentPage === "delivery" ? "active" : ""}`}
-            onClick={() => onNavigate("delivery")}
-          >
-            ДОСТАВКА
-          </button>
-          <button 
-            className={`nav-link ${currentPage === "payment" ? "active" : ""}`}
-            onClick={() => onNavigate("payment")}
-          >
-            ОПЛАТА
-          </button>
-          <button 
-            className={`nav-link ${currentPage === "contacts" ? "active" : ""}`}
-            onClick={() => onNavigate("contacts")}
-          >
-            КОНТАКТЫ
-          </button>
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              className={`nav-link ${currentPage === item.id ? "active" : ""}`}
+              onClick={() => onNavigate(item.id)}
+            >
+              {item.label}
+            </button>
+          ))}
         </nav>
 
         <div className="contacts-module">
@@ -179,6 +170,35 @@ export function Header({ currentPage, onNavigate, onOpenInfo }: HeaderProps) {
             <Phone size={18} />
             <span>ЗВОНОК</span>
           </button>
+          
+          {/* Burger Menu Button */}
+          <button 
+            className="burger-button"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={mobileMenuOpen ? "Закрыть меню" : "Открыть меню"}
+          >
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      <div className={`mobile-menu ${mobileMenuOpen ? 'open' : ''}`}>
+        <nav className="mobile-nav">
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              className={`mobile-nav-link ${currentPage === item.id ? "active" : ""}`}
+              onClick={() => handleNavigate(item.id)}
+            >
+              {item.label}
+            </button>
+          ))}
+        </nav>
+        <div className="mobile-contacts">
+          <a href="tel:+375296155672" className="mobile-phone">
+            +375 (29) 615-56-72
+          </a>
         </div>
       </div>
 
@@ -223,7 +243,7 @@ export function Header({ currentPage, onNavigate, onOpenInfo }: HeaderProps) {
           width: 55px;
           height: 75px;
           flex-shrink: 0;
-          filter: drop-shadow(0 0 12px rgba(255, 154, 77, 0.4));
+          filter: drop-shadow(0 0 6px rgba(255, 154, 77, 0.25));
         }
 
         .lamp-svg {
@@ -232,19 +252,19 @@ export function Header({ currentPage, onNavigate, onOpenInfo }: HeaderProps) {
           animation: lamp-flicker 4s infinite ease-in-out;
         }
 
-        /* Анимация мерцания пламени газовой лампы */
+        /* Анимация мерцания пламени газовой лампы - уменьшенная интенсивность */
         @keyframes lamp-flicker {
           0%, 100% {
-            filter: drop-shadow(0 0 8px #ffaa00) drop-shadow(0 0 16px #ff8800) drop-shadow(0 0 4px #ff4400);
+            filter: drop-shadow(0 0 4px #ffaa00) drop-shadow(0 0 8px #ff8800);
           }
           25% {
-            filter: drop-shadow(0 0 10px #ffaa00) drop-shadow(0 0 20px #ff8800) drop-shadow(0 0 6px #ff4400);
+            filter: drop-shadow(0 0 5px #ffaa00) drop-shadow(0 0 10px #ff8800);
           }
           50% {
-            filter: drop-shadow(0 0 14px #ffaa00) drop-shadow(0 0 28px #ff8800) drop-shadow(0 0 8px #ff4400);
+            filter: drop-shadow(0 0 6px #ffaa00) drop-shadow(0 0 12px #ff8800);
           }
           75% {
-            filter: drop-shadow(0 0 9px #ffaa00) drop-shadow(0 0 18px #ff8800) drop-shadow(0 0 5px #ff4400);
+            filter: drop-shadow(0 0 5px #ffaa00) drop-shadow(0 0 10px #ff8800);
           }
         }
 
@@ -278,22 +298,23 @@ export function Header({ currentPage, onNavigate, onOpenInfo }: HeaderProps) {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 8px;
+          gap: 6px;
           flex-wrap: wrap;
         }
 
         .nav-link {
-          padding: 8px 14px;
+          padding: 8px 12px;
           background: transparent;
           border: none;
           border-radius: 6px;
           color: var(--text-secondary);
           font-family: 'Bebas Neue', sans-serif;
-          font-size: 13px;
-          letter-spacing: 0.08em;
+          font-size: 12px;
+          letter-spacing: 0.06em;
           cursor: pointer;
           transition: all 0.3s;
           text-transform: uppercase;
+          white-space: nowrap;
         }
 
         .nav-link:hover {
@@ -304,7 +325,7 @@ export function Header({ currentPage, onNavigate, onOpenInfo }: HeaderProps) {
         .nav-link.active {
           color: var(--gri-glow);
           background: rgba(255, 154, 77, 0.15);
-          box-shadow: 0 0 12px rgba(255, 154, 77, 0.3);
+          box-shadow: 0 0 8px rgba(255, 154, 77, 0.2);
         }
 
         .contacts-module {
@@ -378,6 +399,98 @@ export function Header({ currentPage, onNavigate, onOpenInfo }: HeaderProps) {
             inset -1px -1px 3px rgba(255,255,255,0.02);
         }
 
+        .burger-button {
+          display: none;
+          width: 44px;
+          height: 44px;
+          align-items: center;
+          justify-content: center;
+          background: var(--surface);
+          border: 1px solid var(--grid-lines);
+          border-radius: 8px;
+          color: var(--text-primary);
+          cursor: pointer;
+          transition: all 0.3s;
+        }
+
+        .burger-button:hover {
+          border-color: var(--gri-glow);
+          color: var(--gri-glow);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+          display: none;
+          position: absolute;
+          top: 80px;
+          left: 0;
+          right: 0;
+          background: var(--background-secondary);
+          padding: 20px;
+          box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+          transform: translateY(-100%);
+          opacity: 0;
+          visibility: hidden;
+          transition: all 0.3s ease;
+          z-index: 999;
+        }
+
+        .mobile-menu.open {
+          transform: translateY(0);
+          opacity: 1;
+          visibility: visible;
+        }
+
+        .mobile-nav {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .mobile-nav-link {
+          padding: 16px 20px;
+          background: var(--surface);
+          border: 1px solid var(--grid-lines);
+          border-radius: 8px;
+          color: var(--text-secondary);
+          font-family: 'Bebas Neue', sans-serif;
+          font-size: 14px;
+          letter-spacing: 0.08em;
+          cursor: pointer;
+          transition: all 0.3s;
+          text-align: left;
+          text-transform: uppercase;
+        }
+
+        .mobile-nav-link:hover {
+          background: rgba(255, 154, 77, 0.1);
+          color: var(--text-primary);
+        }
+
+        .mobile-nav-link.active {
+          background: rgba(255, 154, 77, 0.15);
+          color: var(--gri-glow);
+          border-color: var(--gri-glow);
+        }
+
+        .mobile-contacts {
+          margin-top: 20px;
+          padding-top: 20px;
+          border-top: 1px solid var(--grid-lines);
+        }
+
+        .mobile-phone {
+          display: block;
+          padding: 16px;
+          background: var(--surface);
+          border-radius: 8px;
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 16px;
+          color: var(--gri-glow);
+          text-align: center;
+          text-decoration: none;
+        }
+
         @media (max-width: 1200px) {
           .header-container {
             grid-template-columns: 240px 1fr auto;
@@ -385,7 +498,7 @@ export function Header({ currentPage, onNavigate, onOpenInfo }: HeaderProps) {
           }
 
           .nav-link {
-            font-size: 12px;
+            font-size: 11px;
             padding: 6px 10px;
           }
         }
@@ -399,6 +512,14 @@ export function Header({ currentPage, onNavigate, onOpenInfo }: HeaderProps) {
           .main-nav {
             display: none;
           }
+
+          .burger-button {
+            display: flex;
+          }
+
+          .mobile-menu {
+            display: block;
+          }
         }
 
         @media (max-width: 768px) {
@@ -409,6 +530,10 @@ export function Header({ currentPage, onNavigate, onOpenInfo }: HeaderProps) {
           .header-container {
             padding: 0 16px;
             gap: 8px;
+          }
+
+          .mobile-menu {
+            top: 56px;
           }
 
           .logo-lamp {
@@ -433,13 +558,13 @@ export function Header({ currentPage, onNavigate, onOpenInfo }: HeaderProps) {
           }
           
           .info-button {
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
           }
           
           .info-button svg {
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
           }
 
           .phone-link {
@@ -455,8 +580,18 @@ export function Header({ currentPage, onNavigate, onOpenInfo }: HeaderProps) {
           }
           
           .call-button svg {
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
+          }
+
+          .burger-button {
+            width: 36px;
+            height: 36px;
+          }
+
+          .burger-button svg {
+            width: 20px;
+            height: 20px;
           }
         }
       `}</style>
